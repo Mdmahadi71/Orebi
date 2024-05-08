@@ -1,25 +1,23 @@
-
-import Arrivals from "./components/Arrivals"
-import Banner from "./components/Banner"
-import Footer from "./components/Footer"
-import Manu from "./components/Manu"
-import Navbar from "./components/Navbar"
-import Sale from "./components/Sale"
-import Special from "./components/Special"
-
+import Home from "./pages/Home"
+import {createBrowserRouter ,createRoutesFromElements , RouterProvider ,Route} from 'react-router-dom'
+import Layout from './components/Layout'
+import Shop from "./components/Shop"
 
 
 function App() {
 
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route element={<Layout/>}>
+    <Route path="/" element={<Home/>}> </Route>
+    <Route path="/Shop" element={<Shop/>}> </Route>
+  </Route>
+))
+  
   return (
    <>
-   <Navbar/>
-   <Manu/>
-   <Banner/>
-   <Sale/>
-   <Arrivals/>
-   <Special/>
-   <Footer/>
+    <RouterProvider router={router} >
+
+    </RouterProvider>
    </>
   )
 }

@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import Container from './Container';
-import spatial1 from '../assets/spata1.png'
-import spatial2 from '../assets/spata2.png'
-import spatial3 from '../assets/spata3.png'
-import spatial4 from '../assets/spata4.png'
+import bestImg from '../assets/bast.png'
+import { FaHeart } from "react-icons/fa6";
+import { TfiReload } from "react-icons/tfi";
+import { FaCartArrowDown } from "react-icons/fa";
+import axios from 'axios';
+
+
 
 const Special = () => {
+    let [product, setProduct] = useState([])
+
+    let gatData = () => {
+        axios.get(("https://dummyjson.com/products")).then((response) => {
+            setProduct(response.data.products);
+        })
+    }
+    useEffect(() => {
+        gatData()
+    }, [])
     function SampleNextArrow(props) {
         const { onClick } = props;
         return (
@@ -39,8 +52,7 @@ const Special = () => {
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
+ 
                 }
             },
             {
@@ -66,31 +78,43 @@ const Special = () => {
                 <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>Special Offers</h2>
             </div>
             <Slider {...settings} >
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={spatial1} alt="" />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={spatial2} alt="" className='lg:w-[90%] w-full' />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={spatial3} alt="" className='lg:w-[90%] w-full' />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={spatial4} alt="" className='lg:w-[90%] w-full' />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={spatial2} alt="" className='lg:w-[90%] w-full' />
-                    </a>
-                </div>
+                {product.map((habib) => (
+                    <div className="w-[23%] py-2">
+                        <div className="">
+                            <div className="  ">
+                                <div className="relative group overflow-hidden">
+                                    <img src={habib.thumbnail} className=' w-[97%] h-[300px] sm:h-[250px]' alt="Arrivalsone" />
+                                    <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+            group-hover:h-[-150px] group-hover:bottom-0 duration-300 mr-3">
+                                        <div className="flex justify-end gap-2 items-center py-3">
+                                            <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                                            <FaHeart />
+                                        </div>
+                                        <div className="flex justify-end gap-2 items-center py-3">
+                                            <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                                            <TfiReload />
+                                        </div>
+                                        <div className="flex justify-end gap-2 items-center py-3">
+                                            <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                                            <FaCartArrowDown />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className=" absolute top-[10px] left-[50%] translate-x-[-50%]">
+                                    <div className=" border-2 border-black p-3 bg-[black] inline-block">
+                                        <h2 className=' font-dm font-bold text-[#ffff] text-[20px] '>555% </h2>
+                                    </div>
+                                </div>
+                                <div className="flex justify-between pr-4">
+                                    <h2 className=' font-dm font-bold text-[#262626] text-[20px] '>Lorem ipsum </h2>
+                                    <p className=' font-dm font-bold text-[#767676] text-[17px]'>$555</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
             </Slider>
         </Container>
     )

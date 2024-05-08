@@ -1,35 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from './Container'
-import Arrivalsone from '../assets/Arrivals1.png'
-import Arrivalstwo from '../assets/Arrivals2.png'
-import Arrivalsthree from '../assets/Arrivals3.png'
-import Arrivalsfure from '../assets/Arrivals4.png'
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import prod1 from '../assets/prod1.png'
-import prod2 from '../assets/prod2.png'
-import prod3 from '../assets/prod3.png'
-import prod4 from '../assets/prod4.png'
-import ado from '../assets/Ads_2.png'
+import { FaHeart } from "react-icons/fa";
+import axios from 'axios';
+import { TfiReload } from "react-icons/tfi";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Arrivals = () => {
+
+    let [product, setProduct] = useState([])
+
+    let gatData = () => {
+        axios.get(("https://dummyjson.com/products")).then((response) => {
+            setProduct(response.data.products);
+        })
+    }
+    useEffect(() => {
+        gatData()
+    }, [])
+    console.log(product);
+
+
+
     function SampleNextArrow(props) {
         const { onClick } = props;
         return (
-            <div data-aos='fade-left' className='absolute lg:top-[37%] top-[30%] lg:h-[50px] h-[30px]  w-[30px]  lg:w-[50px] bg-[#979797] text-[#FFFFFF] right-[0] z-10 lg:text-[30px] text-[20px] cursor-pointer' onClick={onClick} > <IoIosArrowForward className='item-center lg:mt-[10px] mt-[5px]  lg:ml-[5px] ml-[2px] '  /> </div>
+            <div data-aos='fade-left' className='absolute lg:top-[37%] top-[30%] lg:h-[50px] h-[30px]  w-[30px]  lg:w-[50px] bg-[#979797] text-[#FFFFFF] right-[0] z-10 lg:text-[30px] text-[20px] cursor-pointer' onClick={onClick} > <IoIosArrowForward className='item-center lg:mt-[10px] mt-[5px]  lg:ml-[5px] ml-[2px] ' /> </div>
         );
     }
 
     function SamplePrevArrow(props) {
-        const {className, style, onClick } = props;
+        const { className, style, onClick } = props;
         return (
-            <div data-aos='fade-left' className='absolute lg:top-[37%] top-[30%] lg:h-[50px] h-[30px] w-[30px] lg:w-[50px] bg-[#979797] text-[#FFFFFF] left-[0] z-10 lg:text-[30px] text-[20px] cursor-pointer' onClick={onClick}> <IoIosArrowBack className='item-center lg:mt-[10px] mt-[5px]  lg:ml-[5px] ml-[2px] '  /> </div>
+            <div data-aos='fade-left' className='absolute lg:top-[37%] top-[30%] lg:h-[50px] h-[30px] w-[30px] lg:w-[50px] bg-[#979797] text-[#FFFFFF] left-[0] z-10 lg:text-[30px] text-[20px] cursor-pointer' onClick={onClick}> <IoIosArrowBack className='item-center lg:mt-[10px] mt-[5px]  lg:ml-[5px] ml-[2px] ' /> </div>
         );
     }
     const settings = {
-        infinite: true,
+        infinite: false,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -43,7 +52,6 @@ const Arrivals = () => {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     infinite: true,
-                    dots: true
                 }
             },
             {
@@ -64,69 +72,49 @@ const Arrivals = () => {
         ]
     };
     return (
-        <div>
-            <Container className='lg:py-[118px] py-[40px]'>
-                <div className="py-3">
-                    <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>New Arrivals</h2>
+        <div className="py-[50px]">
+            <Container>
+                <div className="">
+                    <h2 className=' font-dm font-bold text-[36px] text-[#262626]'>New Arrivals</h2>
                 </div>
-                <Slider {...settings} className=' gap-x-1'>
-
-                    <div className="">
-                        <a href="#" target='blank'>
-                            <img src={Arrivalsone} alt="" className='lg:w-[90%] w-full' />
-                        </a>
-                    </div>
-                    <div className="">
-                        <a href="#" target='blank'>
-                            <img src={Arrivalstwo} alt="" className='lg:w-[90%] w-full' />
-                        </a>
-                    </div>
-                    <div className="">
-                        <a href="#" target='blank'>
-                            <img src={Arrivalsthree} alt="" className='lg:w-[90%] w-full' />
-                        </a>
-                    </div>
-                    <div className="">
-                        <a href="#" target='blank'>
-                            <img src={Arrivalsfure} alt="" className='lg:w-[90%] w-full ' />
-                        </a>
-                    </div>
-                    <div className="">
-                        <a href="#" target='blank'>
-                            <img src={Arrivalsthree} alt="" className='lg:w-[90%] w-full' />
-                        </a>
-                    </div>
+                <Slider {...settings}>
+                    {product.map((item) => (
+                        <div className="w-[23%] py-2">
+                            <div className="">
+                                <div className="  ">
+                                    <div className="relative group overflow-hidden">
+                                        <img src={item.thumbnail} className=' w-[97%] h-[300px] sm:h-[250px]' alt="Arrivalsone" />
+                                        <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                    group-hover:h-[-150px] group-hover:bottom-0 duration-300 mr-3">
+                                    <div className="flex justify-end gap-2 items-center py-3">
+                                        <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                                        <FaHeart />
+                                    </div>
+                                    <div className="flex justify-end gap-2 items-center py-3">
+                                        <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                                        <TfiReload />
+                                    </div>
+                                    <div className="flex justify-end gap-2 items-center py-3">
+                                        <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                                        <FaCartArrowDown />
+                                    </div>
+                                </div>
+                                    </div>
+                                    
+                                    <div className=" absolute top-[10px] left-[50%] translate-x-[-50%]">
+                                        <div className=" border-2 border-black p-3 bg-[black] inline-block">
+                                            <h2 className=' font-dm font-bold text-[#ffff] text-[20px] '>{item.discountPercentage}% </h2>
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-between pr-4">
+                                        <h2 className=' font-dm font-bold text-[#262626] text-[20px] '>{item.title}</h2>
+                                        <p className=' font-dm font-bold text-[#767676] text-[17px]'>${item.price}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </Slider>
-                <Slider {...settings} className=' lg:pt-[100px] pt-[20px]'>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={prod1} alt="" className='lg:w-[90%] w-full' />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={prod2} alt="" className='lg:w-[90%] w-full' />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={prod3} alt="" className='lg:w-[90%] w-full' />
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={prod4} alt=""  className='lg:w-[90%] w-full'/>
-                    </a>
-                </div>
-                <div className="">
-                    <a href="#" target='blank'>
-                        <img src={prod2} alt="" className='lg:w-[90%] w-full'/>
-                    </a>
-                </div>
-                </Slider>
-                <div className="lg:pt-[100px] pt-[20px]">
-                    <img src={ado} alt="" />
-                </div>
             </Container>
         </div>
     )
