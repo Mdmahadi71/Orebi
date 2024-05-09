@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,info } from 'react'
 import Container from './Container'
 import Slider from "react-slick";
 import { IoIosArrowForward } from "react-icons/io";
@@ -20,7 +20,6 @@ const Arrivals = () => {
     useEffect(() => {
         gatData()
     }, [])
-    console.log(product);
 
 
 
