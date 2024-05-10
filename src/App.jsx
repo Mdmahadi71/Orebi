@@ -1,7 +1,11 @@
 import Home from "./pages/Home"
 import {createBrowserRouter ,createRoutesFromElements , RouterProvider ,Route} from 'react-router-dom'
 import Layout from './components/Layout'
-import Shop from "./components/Shop"
+import ShopPage from "./pages/ShopPage"
+import ProductPage from "./pages/ProductPage"
+import AboutPage from "./pages/AboutPage"
+import ContactPage from "./pages/ContactPage"
+import LoginPage from "./pages/LoginPage"
 
 
 function App() {
@@ -9,7 +13,11 @@ function App() {
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<Layout/>}>
     <Route path="/" element={<Home/>}> </Route>
-    <Route path="/Shop" element={<Shop/>}> </Route>
+    <Route path="/Shop" element={<ShopPage/>}> </Route>
+    <Route path="/ProductPage" element={<ProductPage/>}> </Route>
+    <Route path="/About" element={<AboutPage/>}> </Route>
+    <Route path="/Contacts" element={<ContactPage/>}> </Route>
+    <Route path="/Login" element={<LoginPage/>}> </Route>
   </Route>
 ))
   

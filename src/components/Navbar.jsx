@@ -23,8 +23,8 @@ const Navbar = () => {
                 :' top-[70px] left-[-200px]  '}`}>
                     <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='/'>Home</Link></li>
                     <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='/Shop'>Shop</Link></li>
-                    <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'>About</li>
-                    <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'>Contacts</li>
+                    <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='About'>About</Link></li>
+                    <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='Contacts'>Contacts</Link></li>
                     <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'>Journal</li>
                 </ul>
             </div>

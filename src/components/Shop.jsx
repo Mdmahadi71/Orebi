@@ -5,6 +5,11 @@ import { FaList } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoAdd } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { FaHeart } from "react-icons/fa6";
+import { TfiReload } from "react-icons/tfi";
+import { FaCartArrowDown } from "react-icons/fa";
+import ShopImg from '../assets/shop.png'
+import bestImg from '../assets/bast.png'
 
 
 const Shop = () => {
@@ -13,10 +18,10 @@ const Shop = () => {
       <Container>
         <h2 className=' font-dm font-bold text-[49px] text-[#262626]'>Products</h2>
         <div className="">
-          <h2 className=' font-dm font-medium text-[12px] text-[#767676]'><Link to='/'>Home</Link> 	&gt; <Link to='/Shop'>Products</Link></h2>
+          <h2 className=' font-dm font-medium text-[12px] text-[#767676]'><Link to='/'>Home</Link> 	&gt; <Link to='/ProductPage'>Products</Link></h2>
         </div>
         <div className=" flex justify-between gap-x-2">
-          <div className="w-[20%] py-[50px]">
+          <div className="w- lg:w-[20%] py-[50px]">
             <div className="">
               <h2 className=' font-dm font-bold text-[#262626] text-[20px]'>Shop by Category</h2>
               <div className=" pt-4">
@@ -70,7 +75,7 @@ const Shop = () => {
                 </div>
               </div>
               <div className="py-4">
-              <div className=" flex justify-between items-center">
+                <div className=" flex justify-between items-center">
                   <h2 className=' font-dm font-bold text-[#262626] text-[20px]'>Shop by Brand</h2>
                   <IoMdArrowDropdown />
                 </div>
@@ -85,7 +90,7 @@ const Shop = () => {
                 </div>
               </div>
               <div className=" py-3">
-              <div className=" flex justify-between items-center">
+                <div className=" flex justify-between items-center">
                   <h2 className=' font-dm font-bold text-[#262626] text-[20px]'>Shop by Price</h2>
                   <IoMdArrowDropdown />
                 </div>
@@ -101,10 +106,10 @@ const Shop = () => {
               </div>
             </div>
           </div>
-          <div className="w-[80%]">
+          <div className="lg:w-[80%]">
             <div className="  flex justify-between items-center py-[50px]">
-              <div className="w-[20%]">
-                <div className="flex gap-x-3">
+              <div className="lg:w-[20%]">
+                <div className="lg:flex gap-x-3">
                   <div className="border-2 border-[#F0F0F0] py-3 px-4 bg-black text-white hover:bg-white hover:text-black duration-500">
                     <IoGrid />
                   </div>
@@ -113,13 +118,13 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-[80%]">
-                <div className="flex justify-end gap-4">
-                  <div className="w-[35%]">
+              <div className="lg:w-[80%]">
+                <div className="lg:flex lg:justify-end gap-4">
+                  <div className="lg:w-[35%]">
                     <div className="flex gap-4 pt-[6px]">
-                      <h2 className=' font-dm font-medium text-[16px] text-[#767676]  py-3 px-4'>Sort by:</h2>
-                      <div className=" border-4 border-[#262626] py-3 px-4">
-                        <div className="flex justify-between gap-x-[25px] items-center">
+                      <h2 className=' font-dm font-medium text-[16px] text-[#767676]   text-center lg:text-start lg:py-3 py-1 px-2 lg:px-4'>Sort by:</h2>
+                      <div className=" border-2 border-[#F0F0F0] py-3 px-4">
+                        <div className="flex justify-between lg:gap-x-[25px] gap-x-2 items-center">
                           <h3 className='font-dm font-medium text-[16px] text-[#767676]'>Featured</h3>
                           <IoMdArrowDropdown className='text-[16px]' />
                         </div>
@@ -129,7 +134,7 @@ const Shop = () => {
                   <div className="w-[25%]">
                     <div className="flex gap-4 pt-[6px]">
                       <h2 className='font-dm font-medium text-[16px] text-[#767676]  py-3 px-4'>Show:</h2>
-                      <div className=" border-4 border-[#262626] py-3 px-4">
+                      <div className=" border-2 border-[#F0F0F0] py-3 px-4">
                         <div className="flex justify-between gap-x-[25px] items-center">
                           <h3 className='font-dm font-medium text-[16px] text-[#767676]'>36</h3>
                           <IoMdArrowDropdown className='text-[16px]' />
@@ -141,7 +146,242 @@ const Shop = () => {
               </div>
             </div>
             <div className="">
-
+              <div className=" flex justify-between flex-wrap">
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={bestImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3 ">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3 ">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3 ">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg;w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3 ">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3 ">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3 ">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="lg:w-[33%]">
+                  <div className=" my-[30px]">
+                    <div className="relative group overflow-hidden">
+                      <img src={ShopImg} className=' w-full' alt="" />
+                      <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
+                                  group-hover:h-[-150px] group-hover:bottom-0 duration-300">
+                        <div className="flex justify-end gap-2 items-center py-3 ">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Wish List</h2>
+                          <FaHeart />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Compare</h2>
+                          <TfiReload />
+                        </div>
+                        <div className="flex justify-end gap-2 items-center py-3">
+                          <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold hover:text-[#262626] duration-500'>Add to Cart</h2>
+                          <FaCartArrowDown />
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" flex justify-between">
+                      <h2 className=' font-dm font-medium text-[20px] text-[#262626]'>Basic Crew Neck Tee</h2>
+                      <p className=' font-dm font-medium text-[20px] text-[#767676]'>$44.00</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
