@@ -6,6 +6,8 @@ import ProductPage from "./pages/ProductPage"
 import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
 import LoginPage from "./pages/LoginPage"
+import SingupPage from "./pages/SingupPage"
+import AccountPage from "./pages/AccountPage"
 
 
 function App() {
@@ -18,6 +20,8 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/About" element={<AboutPage/>}> </Route>
     <Route path="/Contacts" element={<ContactPage/>}> </Route>
     <Route path="/Login" element={<LoginPage/>}> </Route>
+    <Route path="/Singup" element={<SingupPage/>}> </Route>
+    <Route path="/Myaccount" element={<AccountPage/>}> </Route>
   </Route>
 ))
   

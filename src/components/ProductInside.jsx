@@ -6,8 +6,12 @@ import ProductImg2 from '../assets/prd2.png'
 import { IoIosStar } from "react-icons/io";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
+import { useDispatch, useSelector } from 'react-redux';
+import { increment ,decrement} from '../counter/CounterState';
 
 const ProductInside = () => {
+    let dispacth = useDispatch()
+    let data = useSelector((state)=>state.counter.value)
   return (
       <div className='py-[50px]'>
           <Container>
@@ -59,7 +63,7 @@ const ProductInside = () => {
                       </div>
                       <div className=" flex gap-x-[40px] items-center py-[20px] border-b-2 border-[#D8D8D8] ">
                           <h2 className=' font-dm font-normal text-[14px] text-[#767676]'>$88.00</h2>
-                          <h3 className=' font-dm font-normal text-[16px] text-[#767676]'>$44.00</h3>
+                          <h3 className=' font-dm font-normal text-[16px] text-[#262626]'>$44.00</h3>
                       </div>
                       <div className=" flex gap-x-[40px] py-[20px]">
                           <div className="">
@@ -95,9 +99,11 @@ const ProductInside = () => {
                           </div>
                           <div className=" border-2 border-[#F0F0F0] py-2 px-4">
                               <div className=" flex justify-between  gap-x-[60px] items-center">
-                                  <h2>-</h2>
-                                  <h2 className=' font-dm font-normal text-[16px] text-[#767676]'>1</h2>
-                                  <GoPlus />
+                                  <button onClick={() => dispacth(decrement())}>-</button>
+                                  <div className="<h2 className=' font-dm font-normal text-[16px] text-[#767676]'">
+                                      {data}
+                                  </div>
+                                  <button onClick={() => dispacth(increment())}>+</button>
                               </div>
                           </div>
                       </div>

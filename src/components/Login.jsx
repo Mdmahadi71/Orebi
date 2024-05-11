@@ -9,7 +9,7 @@ const Login = () => {
                 <div className="py-[30px] ">
                     <h2 className=' font-dm font-bold text-[49px] text-[#262626]'>Login</h2>
                     <div className="">
-                        <h2 className=' font-dm font-medium text-[12px] text-[#767676]'><Link to='/'>Home</Link> &gt; <Link to='/Login'>Login</Link></h2>
+                        <h2 className=' font-dm font-medium text-[12px] text-[#767676]'><Link to='/'>Home</Link> &gt; <Link to='/Singup'>Sing Up</Link></h2>
                     </div>
                 </div>
                 <div className=" lg:w-[50%] ">
