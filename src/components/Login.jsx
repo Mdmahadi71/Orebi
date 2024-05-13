@@ -32,7 +32,9 @@ const Login = () => {
                     <div className="py-[20px] ">
                         <div className=" border-2 border-[#767676]  py-2 px-5 inline-block
                 text-[#262626] bg-white hover:bg-black hover:text-white duration-500 ">
-                            <button className=' font-dm font-bold text-[20px] ' type=' submit'>Log in</button>
+                            <form>
+                                <input type="submit" className=' font-dm font-bold text-[16px] ' value="Log in"></input>
+                            </form>
                         </div>
                     </div>
                 </div>

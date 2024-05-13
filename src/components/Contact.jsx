@@ -26,13 +26,16 @@ const Contact = () => {
                              text-[#262626]' placeholder='Your message here' />
                         <div className="pt-[30px]">
                             <div className=" border-2 border-black py-2 px-[40px] bg-black text-[#fff] inline-block cursor-pointer hover:bg-white hover:text-black duration-500">
-                                <button type='submit' className=' font-dm font-bold text-[16px] '>Post</button>
+                                <form>
+                                    <input type="submit" className=' font-dm font-bold text-[16px] ' value="Post"></input>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div className=" w-full py-[30px]">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.6337852473275!2d90.3591987735366!3d23.760435288394387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf58dd8cbce9%3A0x700079053de7fbc0!2sNurjahan%20Rd%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1715363963225!5m2!1sen!2sbd" width="100%" height="450"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.6337852473275!2d90.3591987735366!3d23.760435288394387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf58dd8cbce9%3A0x700079053de7fbc0!2sNurjahan%20Rd%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1715363963225!5m2!1sen!2sbd" width="100%" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </Container>
         </div>

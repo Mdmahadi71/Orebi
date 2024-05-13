@@ -113,7 +113,9 @@ const SingUp = () => {
                     <div className="py-[20px] ">
                         <div className=" border-2 border-black py-2 px-8 bg-black text-white  inline-block
                      hover:bg-white hover:text-[#262626] duration-300 ">
-                            <button type='submit' className=' font-dm font-light text-[18px] '>Log in</button>
+                            <form>
+                                <input type="submit" className=' font-dm font-bold text-[16px] ' value="Log in"></input>
+                            </form>
                         </div>
                     </div>
                 </div>
