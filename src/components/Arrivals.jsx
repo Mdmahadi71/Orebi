@@ -1,4 +1,4 @@
-import React, { useEffect, useState,info } from 'react'
+import React, { useEffect, useState,info, useContext } from 'react'
 import Container from './Container'
 import Slider from "react-slick";
 import { IoIosArrowForward } from "react-icons/io";
@@ -7,20 +7,10 @@ import { FaHeart } from "react-icons/fa";
 import axios from 'axios';
 import { TfiReload } from "react-icons/tfi";
 import { FaCartArrowDown } from "react-icons/fa";
+import { DataApi } from './ContextApi';
 
 const Arrivals = () => {
-
-    let [product, setProduct] = useState([])
-
-    let gatData = () => {
-        axios.get(("https://dummyjson.com/products")).then((response) => {
-            setProduct(response.data.products);
-        })
-    }
-    useEffect(() => {
-        gatData()
-    }, [])
-
+    let itemss = useContext(DataApi)
 
 
     function SampleNextArrow(props) {
@@ -77,10 +67,10 @@ const Arrivals = () => {
                     <h2 className=' font-dm font-bold text-[36px] text-[#262626]'>New Arrivals</h2>
                 </div>
                 <Slider {...settings}>
-                    {product.map((item) => (
+                    {itemss.map((item) => (
                         <div className="w-[23%] py-2">
                             <div className="">
-                                <div className="  ">
+                                <div className="">
                                     <div className="relative group overflow-hidden">
                                         <img src={item.thumbnail} className=' w-[97%] h-[300px] sm:h-[250px]' alt="Arrivalsone" />
                                         <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 

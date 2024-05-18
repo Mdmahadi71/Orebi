@@ -7,9 +7,10 @@ import { ContextApi } from './components/ContextApi.jsx';
 import { Provider } from 'react-redux'
 import { store } from './Store.js';
 ReactDOM.createRoot(document.getElementById('root')).render(
-  < Provider store={store}>
+
+  < ContextApi >
        <App />
-  </ Provider>
+  </ ContextApi>
 
 
 
