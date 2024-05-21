@@ -10,11 +10,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { increment ,decrement} from '../counter/CounterState';
 
 const ProductInside = () => {
-    let dispacth = useDispatch()
-    let data = useSelector((state)=>state.counter.value)
+
   return (
       <div className='py-[50px]'>
-          <Container>
+          {/* <Container>
               <div className="">
                   <h2 className=' font-dm font-bold text-[49px] text-[#262626]'>Products</h2>
                   <div className="">
@@ -99,11 +98,11 @@ const ProductInside = () => {
                           </div>
                           <div className=" border-2 border-[#F0F0F0] py-2 px-4">
                               <div className=" flex justify-between  gap-x-[60px] items-center">
-                                  <button onClick={() => dispacth(decrement())}>-</button>
+                                  <button >-</button>
                                   <div className="<h2 className=' font-dm font-normal text-[16px] text-[#767676]'">
-                                      {data}
+                                      
                                   </div>
-                                  <button onClick={() => dispacth(increment())}>+</button>
+                                  <button >+</button>
                               </div>
                           </div>
                       </div>
@@ -186,7 +185,7 @@ const ProductInside = () => {
                       </div>
                   </div>
               </div>
-          </Container>
+          </Container> */}
       </div>
   )
 }

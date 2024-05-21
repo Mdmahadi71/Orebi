@@ -24,6 +24,27 @@ const Shop = () => {
   let LastPage = Firstpage - perPage
   let Allpage = itemss.slice(LastPage, Firstpage)
 
+
+  let pageNumber =[]
+  
+  for(let i = 0; i < Math.ceil(itemss.length / perPage ); i++){
+    pageNumber.push(i)
+  }
+ 
+let paginets = (pageNumber) =>{
+  setpgeProduct(pageNumber + 1)
+}
+let next = ()=>{
+  if(pageProdect < pageNumber.length){
+    setpgeProduct((state)=>state + 1)
+  }
+}
+
+let prew =()=>{
+  if(pageProdect > 1){
+    setpgeProduct((state)=>state - 1)
+  }
+}
   return (
     <div>
       <Container>
@@ -159,7 +180,7 @@ const Shop = () => {
             </div>
             <div className="">
               <Post Allpage={Allpage} />
-              <Paginationarea />
+              <Paginationarea pageNumber={pageNumber} paginets={paginets} pageProdect={pageProdect} prew={prew} next={next}/>
             </div>
           </div>
         </div>
