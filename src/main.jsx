@@ -9,7 +9,9 @@ import { store } from './Store.js';
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   < ContextApi >
-       <App />
+    <Provider store={store} >
+      <App />
+    </Provider>
   </ ContextApi>
 
 

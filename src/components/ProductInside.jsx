@@ -7,7 +7,7 @@ import { IoIosStar } from "react-icons/io";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
 import { useDispatch, useSelector } from 'react-redux';
-import { increment ,decrement} from '../counter/CounterState';
+import { increment ,decrement} from '../counter/Productslice';
 
 const ProductInside = () => {
 

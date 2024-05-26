@@ -1,28 +1,47 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Container from "./Container"
 import Flex from "./Flex"
 import { IoIosStar } from "react-icons/io";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
+import { RxCross2 } from "react-icons/rx";
+import { FaRegStar } from "react-icons/fa6";
+import { IoMdStarHalf } from "react-icons/io";
+import {useDispatch } from 'react-redux'
+import { addtoCart } from "../counter/Productslice"
 
 const Shopdetils = () => {
-  let productId = useParams()
-  let [habib, sethabib] = useState([])
+    let [show, setShow] = useState(false)
+    let [showFeatu, setFeatu] = useState(false)
+    let productId = useParams()
+    let dispatch = useDispatch()
+    let [habib, sethabib] = useState([])
 
-  let dataId = () => {
-    axios.get(`https://dummyjson.com/products/${productId.Id}`).then((response) => {
-      sethabib(response.data)
+    let dataId = () => {
+        axios.get(`https://dummyjson.com/products/${productId.Id}`).then((response) => {
+            sethabib(response.data)
+        })
+    }
+
+    useEffect(() => {
+        dataId()
+    }, [])
+
+    console.log(habib.rating);
+
+    let clintrating = Array.from({ length: 5 }, (elm, index) => {
+        let number = index + 0.5
+        return (
+            habib.rating > index + 1 ? <IoIosStar /> :
+                habib.rating > number ? <IoMdStarHalf /> : <FaRegStar />
+        )
     })
-  }
+    let hendelcart =(item)=>{
+        dispatch(addtoCart({...item,qun:1}))
+    }
 
-  useEffect(() => {
-    dataId()
-  }, [])
-
-
-  console.log(habib);
   return (
     <div className="py-[150px]">
       <Container>
@@ -46,16 +65,13 @@ const Shopdetils = () => {
             
           ))}
           </div>
+
         <div className="lg:w-[50%] py-[30px]">
                   <div className="">
                       <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>Product</h2>
                       <div className=" flex gap-x-[40px] items-center py-[20px]">
-                          <div className=" flex gap-x-2">
-                              <IoIosStar className=' text-[#FFD881]' />
-                              <IoIosStar className=' text-[#FFD881]' />
-                              <IoIosStar className=' text-[#FFD881]' />
-                              <IoIosStar className=' text-[#FFD881]' />
-                              <IoIosStar className=' text-[#FFD881]' />
+                          <div className=" flex gap-x-2 text-[#FFD881] ">
+                              {clintrating}
                           </div>
                           <div className="">
                               <h2 className=' font-dm font-normal text-[16px] text-[#767676]'>1 Review</h2>
@@ -120,23 +136,39 @@ const Shopdetils = () => {
                         hover:bg-[#2B2B2B] hover:text-[#fff] duration-500">
                               <h2 className=' font-dm font-bold text-[16px] '>Add to Wish List</h2>
                           </div>
-                          <div className=" border-2 border-[#262626] py-3 px-5 bg-[#2B2B2B]
+                          <Link to ='/cart'>
+                          <div onClick={()=>hendelcart(habib)} className=" border-2 border-[#262626] py-3 px-5 bg-[#2B2B2B]
                          hover:bg-white duration-500 text-[#fff] hover:text-[#222]">
                               <h2 className=' font-dm font-bold text-[16px] '>Add to Cart</h2>
                           </div>
+                          </Link>
                       </div>
-                      <div className=" flex justify-between items-center border-b-2 border-[#D8D8D8] py-[20px]">
-                          <h3 className=' font-dm font-bold text-[16px] text-[#262626]'>FEATURES  & DETAILS</h3>
-                          <GoPlus />
+                    
+                      <div onClick={()=>setFeatu(!showFeatu)} className="">
+                          <div className=" flex justify-between items-center border-b-2 border-[#D8D8D8] py-[20px]">
+                              <h3 className=' font-dm font-bold text-[16px] text-[#262626]'>FEATURES  & DETAILS</h3>
+                              {showFeatu == true ? <RxCross2/> :<GoPlus />}
+                          </div>
+                          {showFeatu && 
+                          <div className=" py-[20px]">
+                              <h3 className=' font-dm font-normal text-[16px] text-[#767676]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+                          </div>
+                          }
                       </div>
-                      <div className=" flex justify-between items-center border-b-2 border-[#D8D8D8] py-[20px]">
-                          <h3 className=' font-dm font-bold text-[16px] text-[#262626]'>SHIPPING & RETURNS</h3>
-                          <GoPlus />
+                      <div onClick={()=>setShow(!show)} className="">
+                          <div className=" flex justify-between items-center border-b-2 border-[#D8D8D8] py-[20px]">
+                              <h3 className=' font-dm font-bold text-[16px] text-[#262626]'>SHIPPING & RETURNS</h3>
+                              {show == true ? <RxCross2/> :<GoPlus />}
+                          </div>
+                          {show && 
+                          <div className=" py-[20px]">
+                              <h3 className=' font-dm font-normal text-[16px] text-[#767676]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+                          </div>
+                          }
                       </div>
-                      <div className=" py-[20px]">
-                          <h3 className=' font-dm font-normal text-[16px] text-[#767676]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
-                      </div>
+                      
                       <div className="border-b-2 border-[#D8D8D8] pb-[30px]">
                           <h2 className=' font-dm font-bold text-[20px] text-[#767676]'>Description</h2>
                           <div className=" flex gap-x-[40px] items-center">
