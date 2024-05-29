@@ -36,8 +36,8 @@ const Post = ({Allpage}) => {
                   </div>
                 </div>
                 <div className=" flex justify-between">
-                  <h2 className=' font-dm font-medium lg:text-[20px] text-[14px] text-[#262626]'>Basic Crew Neck Tee</h2>
-                  <p className=' font-dm font-medium lg:text-[20px] text-[14px] text-[#767676]'>$44.00</p>
+                  <h2 className=' font-dm font-medium lg:text-[17px] text-[14px] text-[#262626]'>{habib.title}</h2>
+                  <p className=' font-dm font-medium lg:text-[16px] text-[14px] text-[#767676]'>${habib.price}</p>
                 </div>
               </div>
               </Link>

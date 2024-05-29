@@ -29,7 +29,6 @@ const Shopdetils = () => {
         dataId()
     }, [])
 
-    console.log(habib.rating);
 
     let clintrating = Array.from({ length: 5 }, (elm, index) => {
         let number = index + 0.5
@@ -39,7 +38,7 @@ const Shopdetils = () => {
         )
     })
     let hendelcart =(item)=>{
-        dispatch(addtoCart({...item,qun:1}))
+       dispatch(addtoCart(item))
     }
 
   return (
@@ -49,8 +48,8 @@ const Shopdetils = () => {
         <div className=" lg:flex justify-between items-center py-4">
                   <div className=" flex gap-x-[30px] items-center">
                       <h3 className=' font-dm font-semibold text-[#262626] text-[26px]'>Product</h3>
-                      <h3 className=' font-dm font-semibold text-[#767676] text-[22px]'>$88.00</h3>
-                      <p className=' font-dm font-semibold text-[#262626] text-[22px]'>$44.00</p>
+                      <h3 className=' font-dm font-semibold text-[#767676] text-[18px]'>${habib.price}</h3>
+                      <p className=' font-dm font-semibold text-[#262626] text-[18px]'>${habib.price}</p>
                   </div>
                   <div className=" border-4 border-black py-3 px-5 bg-black inline-block ">
                       <h3 className=' font-dm font-bold text-white text-[16px]'>Add to Cart</h3>
@@ -78,36 +77,30 @@ const Shopdetils = () => {
                           </div>
                       </div>
                       <div className=" flex gap-x-[40px] items-center py-[20px] border-b-2 border-[#D8D8D8] ">
-                          <h2 className=' font-dm font-normal text-[14px] text-[#767676]'>$88.00</h2>
-                          <h3 className=' font-dm font-normal text-[16px] text-[#262626]'>$44.00</h3>
+                          <h2 className=' font-dm font-normal text-[14px] text-[#767676]'>${habib.price}</h2>
+                          <h3 className=' font-dm font-normal text-[16px] text-[#262626]'>${habib.price}</h3>
                       </div>
                       <div className=" flex gap-x-[40px] py-[20px]">
                           <div className="">
-                              <h3 className=' font-dm font-bold text-[16px] text-[#262626]'>COLOR:</h3>
+                              <h3 className=' font-dm font-bold text-[16px] text-[#262626]'>Discount:</h3>
                           </div>
-                          <div className="flex gap-x-[20px] ">
-                              <div className=" border-4 border-[#979797] h-[20px] bg-[#979797] w-[20px] rounded-[50%] hover:h-[30px]
-                             hover:w-[40px] hover:rounded-[50%] duration-500 cursor-pointer "></div>
-                              <div className=" border-4 border-[#FF8686] h-[20px] bg-[#FF8686] w-[20px] rounded-[50%] hover:h-[30px]
-                             hover:w-[40px] hover:rounded-[50%] duration-500 cursor-pointer "></div>
-                              <div className=" border-4 border-[#7ED321] h-[20px] bg-[#7ED321] w-[20px] rounded-[50%] hover:h-[30px]
-                             hover:w-[40px] hover:rounded-[50%] duration-500 cursor-pointer "></div>
-                              <div className=" border-4 border-[#B6B6B6] h-[20px] bg-[#B6B6B6] w-[20px] rounded-[50%] hover:h-[30px]
-                             hover:w-[40px] hover:rounded-[50%] duration-500 cursor-pointer "></div>
-                              <div className=" border-4 border-[#15CBA5] h-[20px] bg-[#15CBA5] w-[20px] rounded-[50%] hover:h-[30px]
-                             hover:w-[40px] hover:rounded-[50%] duration-500 cursor-pointer "></div>
+                          <div className="">
+                            <h2 className=' font-dm font-norlam text-[14px] text-[#262626]'>{habib.discountPercentage}%</h2>
                           </div>
                       </div>
                       <div className=" flex gap-x-[60px] items-center py-[20px]">
                           <div className="">
-                              <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>SIZE:</h2>
+                              <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Warranty:</h2>
                           </div>
-                          <div className=" border-2 border-[#F0F0F0] py-2 px-4">
+                          <div className="">
+                            <h3 className=' font-dm font-medium text-[16px] text-[#767676]'>{habib.warrantyInformation}</h3>
+                          </div>
+                          {/* <div className=" border-2 border-[#F0F0F0] py-2 px-4">
                               <div className=" flex justify-between  gap-x-[60px] items-center">
                                   <h2 className=' font-dm font-normal text-[16px] text-[#767676]'>S</h2>
                                   <MdOutlineArrowDropDown />
                               </div>
-                          </div>
+                          </div> */}
                       </div>
                       <div className=" flex gap-x-[15px] items-center py-[20px] border-b-2 border-[#D8D8D8]">
                           <div className="">
@@ -116,7 +109,7 @@ const Shopdetils = () => {
                           <div className=" border-2 border-[#F0F0F0] py-2 px-4">
                               <div className=" flex justify-between  gap-x-[60px] items-center">
                                   <button >-</button>
-                                  <div className="<h2 className=' font-dm font-normal text-[16px] text-[#767676]'">
+                                  <div className="<h2 className=' font-dm font-normal text-[16px] text-[#767676]">
                                       
                                   </div>
                                   <button >+</button>
@@ -128,7 +121,7 @@ const Shopdetils = () => {
                               <h2 className=' font-dm font-bold text-[16px] text-[#262626]' >STATUS:</h2>
                           </div>
                           <div className="">
-                              <h2 className=' font-dm font-normal text-[16px] text-[#767676]'>In stock</h2>
+                              <h2 className=' font-dm font-normal text-[16px] text-[#767676]'>{habib.stock}  In stock</h2>
                           </div>
                       </div>
                       <div className=" flex gap-x-5 py-[20px] border-b-2 border-[#D8D8D8]">
@@ -151,8 +144,7 @@ const Shopdetils = () => {
                           </div>
                           {showFeatu && 
                           <div className=" py-[20px]">
-                              <h3 className=' font-dm font-normal text-[16px] text-[#767676]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+                              <h3 className=' font-dm font-normal text-[16px] text-[#767676]'>{habib.description} </h3>
                           </div>
                           }
                       </div>
@@ -163,8 +155,7 @@ const Shopdetils = () => {
                           </div>
                           {show && 
                           <div className=" py-[20px]">
-                              <h3 className=' font-dm font-normal text-[16px] text-[#767676]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+                              <h3 className=' font-dm font-normal text-[16px] text-[#767676]'> {habib.description} </h3>
                           </div>
                           }
                       </div>
@@ -172,7 +163,7 @@ const Shopdetils = () => {
                       <div className="border-b-2 border-[#D8D8D8] pb-[30px]">
                           <h2 className=' font-dm font-bold text-[20px] text-[#767676]'>Description</h2>
                           <div className=" flex gap-x-[40px] items-center">
-                              <h2 className=' font-dm font-normal text-[14px] text-[#767676]'>1 review for Product</h2>
+                              <h2 className=' font-dm font-normal text-[14px] text-[#767676]'>{habib.description} </h2>
                               <h2 className=' font-dm font-bold text-[18px] text-[#262626]'>Reviews (1)</h2>
                           </div>
                       </div>
