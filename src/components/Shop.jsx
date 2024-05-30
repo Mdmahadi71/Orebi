@@ -178,7 +178,7 @@ let prew =()=>{
 
               </div>
             </div>
-            <div className="">
+            <div className=" lg:text-end">
               <Post Allpage={Allpage} />
               <Paginationarea pageNumber={pageNumber} paginets={paginets} pageProdect={pageProdect} prew={prew} next={next}/>
             </div>

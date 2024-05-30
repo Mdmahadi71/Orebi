@@ -9,10 +9,11 @@ import { GoPlus } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
 import { FaRegStar } from "react-icons/fa6";
 import { IoMdStarHalf } from "react-icons/io";
-import {useDispatch } from 'react-redux'
-import { addtoCart } from "../counter/Productslice"
+import {useDispatch, useSelector } from 'react-redux'
+import { addtoCart, productDecrement, productIncerment } from "../counter/Productslice"
 
 const Shopdetils = () => {
+    let data = useSelector((state)=>state.product.cartItem)
     let [show, setShow] = useState(false)
     let [showFeatu, setFeatu] = useState(false)
     let productId = useParams()
@@ -38,9 +39,14 @@ const Shopdetils = () => {
         )
     })
     let hendelcart =(item)=>{
-       dispatch(addtoCart(item))
+       dispatch(addtoCart({...item, qun:1}))
     }
-
+    let hendledecrement =(item)=>{
+        dispatch(productDecrement(item))
+    }
+    let hendelIncrement =(item)=>{
+        dispatch(productIncerment(item))
+    }
   return (
     <div className="py-[150px]">
       <Container>
@@ -51,9 +57,11 @@ const Shopdetils = () => {
                       <h3 className=' font-dm font-semibold text-[#767676] text-[18px]'>${habib.price}</h3>
                       <p className=' font-dm font-semibold text-[#262626] text-[18px]'>${habib.price}</p>
                   </div>
-                  <div className=" border-4 border-black py-3 px-5 bg-black inline-block ">
+                  <Link to ='/cart'>
+                  <div onClick={()=>hendelcart(habib)}className=" border-4 border-black py-3 px-5 bg-black inline-block ">
                       <h3 className=' font-dm font-bold text-white text-[16px]'>Add to Cart</h3>
                   </div>
+                  </Link>
               </div>
         </div>
         <div className=" flex justify-between flex-wrap py-4 px-2">
@@ -95,27 +103,25 @@ const Shopdetils = () => {
                           <div className="">
                             <h3 className=' font-dm font-medium text-[16px] text-[#767676]'>{habib.warrantyInformation}</h3>
                           </div>
-                          {/* <div className=" border-2 border-[#F0F0F0] py-2 px-4">
-                              <div className=" flex justify-between  gap-x-[60px] items-center">
-                                  <h2 className=' font-dm font-normal text-[16px] text-[#767676]'>S</h2>
-                                  <MdOutlineArrowDropDown />
-                              </div>
-                          </div> */}
+                         
                       </div>
-                      <div className=" flex gap-x-[15px] items-center py-[20px] border-b-2 border-[#D8D8D8]">
-                          <div className="">
-                              <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>QUANTITY:</h2>
-                          </div>
-                          <div className=" border-2 border-[#F0F0F0] py-2 px-4">
-                              <div className=" flex justify-between  gap-x-[60px] items-center">
-                                  <button >-</button>
-                                  <div className="<h2 className=' font-dm font-normal text-[16px] text-[#767676]">
-                                      
-                                  </div>
-                                  <button >+</button>
-                              </div>
-                          </div>
-                      </div>
+                      {data.map((item,i) => (
+                        <div className=" flex gap-x-[15px] items-center py-[20px] border-b-2 border-[#D8D8D8]">
+                        <div className="">
+                            <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>QUANTITY:</h2>
+                        </div>
+                        <div className=" border-2 border-[#F0F0F0] py-2 px-4">
+                            <div className=" flex justify-between  gap-x-[60px] items-center">
+                                <button onClick={()=>hendledecrement(i)}>-</button>
+                                <div className="<h2 className=' font-dm font-normal text-[16px] text-[#767676]">
+                                    <h2>{item.qun}</h2>
+                                </div>
+                                <button onClick={()=>hendelIncrement(i)}>+</button>
+                            </div>
+                        </div>
+                    </div>
+                      ))}
+                      
                       <div className=" flex gap-x-[40px] py-[20px] border-b-2 border-[#D8D8D8]">
                           <div className="">
                               <h2 className=' font-dm font-bold text-[16px] text-[#262626]' >STATUS:</h2>

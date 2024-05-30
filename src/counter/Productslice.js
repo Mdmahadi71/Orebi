@@ -11,15 +11,14 @@ export const Productslice = createSlice({
   },
   
   reducers: {
-   addtoCart:(state , action)=>{
+   
+   addtoCart:(state , action) => {
     let findProduct = state.cartItem.findIndex((item)=>item.id == action.payload.id)
     if(findProduct !== -1){
-      state.cartItem[findProduct].qun += 1
-      console.log( state.cartItem[findProduct].qun += 1);
+      state.cartItem[findProduct] .qun += 1
       localStorage.setItem('cart',JSON.stringify(state.cartItem))
     }else{
-      state.cartItem=[...state.cartItem , action.payload]
-      console.log(state.cartItem=[...state.cartItem , action.payload]);
+      state.cartItem = [...state.cartItem , action.payload]
       localStorage.setItem('cart',JSON.stringify(state.cartItem))
      
     }
@@ -35,11 +34,15 @@ export const Productslice = createSlice({
       localStorage.setItem('cart',JSON.stringify(state.cartItem))
     }
 
+   },
+   removeProduct:(state,action)=>{
+    state.cartItem.splice(action.payload,1)
+    localStorage.setItem('cart',JSON.stringify(state.cartItem))
    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount,addtoCart,productIncerment,productDecrement } = Productslice.actions
+export const { increment, decrement, incrementByAmount,addtoCart,productIncerment,productDecrement,removeProduct } = Productslice.actions
 
 export default Productslice.reducer
