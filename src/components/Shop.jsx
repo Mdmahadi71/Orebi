@@ -86,7 +86,7 @@ const Shop = () => {
       <Container>
         <h2 className=' font-dm font-bold text-[49px] text-[#262626]'>Products</h2>
         <div className="">
-          <h2 className=' font-dm font-medium text-[12px] text-[#767676]'><Link to='/'>Home</Link> 	&gt; <Link to='/ProductPage'>Products</Link></h2>
+          <h2 className=' font-dm font-medium text-[12px] text-[#767676]'><Link to='/'>Home</Link> 	&gt; <Link to='/Shop'>Products</Link></h2>
         </div>
         <div className=" flex justify-between gap-x-2">
           <div className=" lg:w-[20%] py-[50px] ">
