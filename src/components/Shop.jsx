@@ -6,11 +6,10 @@ import { IoAdd } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import Post from './Pagination/Post';
 import Paginationarea from './Pagination/Paginationarea';
-import { FaHeart } from "react-icons/fa6";
-import { TfiReload } from "react-icons/tfi";
-import { FaCartArrowDown } from "react-icons/fa";
-import { useContext, useState } from 'react';
+import { FaMinus ,FaPlus } from "react-icons/fa6";
+import { useContext, useEffect, useState } from 'react';
 import { DataApi } from './ContextApi';
+import { IoMdArrowDropup } from "react-icons/io";
 
 
 const Shop = () => {
@@ -18,6 +17,13 @@ const Shop = () => {
   let itemss = useContext(DataApi)
   let [pageProdect, setpgeProduct] = useState(1)
   let [perPage, setparPage] = useState(6)
+  let [catagory , setcatagory] = useState(false)
+  let [catebrn , setcatebrn] = useState(false)
+  let [catecoler , setcatecoler] = useState(false)
+  let [cateprice , setcateprice] = useState(false)
+  let [categoryon , setcatagoryone] = useState([])
+  let [catebrand , setcatebrand] = useState([])
+  let [categoryFilter , setcategoryFilter] = useState([])
 
   let Firstpage = pageProdect * perPage
 
@@ -27,24 +33,54 @@ const Shop = () => {
 
   let pageNumber =[]
   
-  for(let i = 0; i < Math.ceil(itemss.length / perPage ); i++){
+  for(let i = 0; i < Math.ceil(categoryFilter.length > 0 ? categoryFilter : itemss.length / perPage ); i++){
     pageNumber.push(i)
   }
  
-let paginets = (pageNumber) =>{
-  setpgeProduct(pageNumber + 1)
-}
-let next = ()=>{
-  if(pageProdect < pageNumber.length){
-    setpgeProduct((state)=>state + 1)
+  let paginets = (pageNumber) =>{
+    setpgeProduct(pageNumber + 1)
   }
-}
+  let next = ()=>{
+    if(pageProdect < pageNumber.length){
+      setpgeProduct((state)=>state + 1)
+    }
+  }
 
-let prew =()=>{
-  if(pageProdect > 1){
-    setpgeProduct((state)=>state - 1)
+  let prew =()=>{
+    if(pageProdect > 1){
+      setpgeProduct((state)=>state - 1)
+    }
   }
-}
+
+
+  let hendlecata = ()=>{
+    setcatagory(!catagory)
+  }
+  let handlebrn = ()=>{
+    setcatebrn(!catebrn)
+  }
+
+  let handlecolor = ()=>{
+    setcatecoler(!catecoler)
+  }
+
+  let handleprice = ()=>{
+    setcateprice(!cateprice)
+  }
+  useEffect(()=>{
+    setcatagoryone([...new Set(itemss.map((item)=> item.category))])
+  },[itemss])
+
+  useEffect(()=>{
+    setcatebrand([...new Set(itemss.map((item)=> item.brand))])
+  },[itemss])
+ 
+  let handlecateg = (cItem)=>{
+    let cateFilter = itemss.filter((item)=>item.category == cItem)
+    setcategoryFilter(cateFilter)
+  }
+
+
   return (
     <div>
       <Container>
@@ -54,78 +90,77 @@ let prew =()=>{
         </div>
         <div className=" flex justify-between gap-x-2">
           <div className=" lg:w-[20%] py-[50px] ">
-            <div className="">
-              <h2 className=' font-dm font-bold text-[#262626] lg:text-[20px] text-[16px]'>Shop by Category</h2>
-              <div className=" lg:pt-4 pt-[36px]">
-                <div className=" flex justify-between items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
-                  <h2 className=' font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]'>Category 1</h2>
-                  <IoAdd className='font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]' />
-                </div>
-                <div className=" flex justify-between items-center py-4 border-b-2 border-[#D8D8D8] bottom-1 left-0">
-                  <h2 className=' font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]'>Category 1</h2>
-                  <IoAdd className='font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]' />
-                </div>
-                <div className=" flex justify-between items-center py-4 border-b-2 border-[#D8D8D8] bottom-1 left-0">
-                  <h2 className=' font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]'>Category 1</h2>
-                  <IoAdd className='font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]' />
-                </div>
-                <div className=" flex justify-between items-center py-4 border-b-2 border-[#D8D8D8] bottom-1 left-0">
-                  <h2 className=' font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]'>Category 1</h2>
-                  <IoAdd className='font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]' />
-                </div>
-                <div className=" flex justify-between items-center py-4 border-b-2 border-[#D8D8D8] bottom-1 left-0">
-                  <h2 className=' font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]'>Category 1</h2>
-                  <IoAdd className='font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]' />
-                </div>
+            <div className=" ">
+              <div onClick={()=>hendlecata(!catagory)} className="flex justify-between items-center">
+              <h2  className=' font-dm font-bold text-[#262626] lg:text-[20px] text-[16px]'>Shop by Category</h2>
+               {catagory == true ?<FaMinus/> : <FaPlus/>}
               </div>
+              {catagory && 
+              <div className=" lg:pt-4 pt-[36px]">
+                {categoryon.map((item)=>(
+                   <div onClick={()=>handlecateg(item)} className=" flex justify-between items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
+                   <h2 className=' font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]'>{item}</h2>
+                   <IoAdd className='font-dm font-medium text-[#767676] lg:text-[16px] text-[12px]' />
+                 </div>
+                ))}
+               
+              </div>
+               }
               <div className="py-4">
-                <div className=" flex justify-between items-center">
+                <div onClick={()=>handlecolor(!catecoler)} className=" flex justify-between items-center">
                   <h2 className=' font-dm font-bold text-[#262626] text-[15px] lg:text-[20px]'>Shop by Color</h2>
-                  <IoMdArrowDropdown />
+                  {catecoler == true ?<IoMdArrowDropup/> : <IoMdArrowDropdown /> }
+                 
                 </div>
+                {catecoler &&
                 <div className=" pt-3">
                   <div className=" flex gap-x-3 items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
                     <div className=" border  h-[10px] w-[10px] bg-black rounded-[50%]"></div>
                     <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 1</h3>
                   </div>
                   <div className=" flex gap-x-3 items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
-                    <div className=" border  h-[10px] w-[10px] bg-[#FF8686] rounded-[50%]"></div>
-                    <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 1</h3>
-                  </div>
-                  <div className=" flex gap-x-3 items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
-                    <div className=" border  h-[10px] w-[10px] bg-[#7ED321] rounded-[50%]"></div>
-                    <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 1</h3>
+                    <div className=" border  h-[10px] w-[10px] bg-[#B6B6B6] rounded-[50%]"></div>
+                    <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 2</h3>
                   </div>
                   <div className=" flex gap-x-3 items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
                     <div className=" border  h-[10px] w-[10px] bg-[#B6B6B6] rounded-[50%]"></div>
-                    <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 1</h3>
+                    <h3 className='font-dm font-medium text-[#2626] text-[16px] pt-1'>Color 3</h3>
                   </div>
                   <div className=" flex gap-x-3 items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
-                    <div className=" border  h-[10px] w-[10px] bg-[#15CBA5] rounded-[50%]"></div>
-                    <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 1</h3>
+                    <div className=" border  h-[10px] w-[10px] bg-[#b6b6b6] rounded-[50%]"></div>
+                    <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 4</h3>
+                  </div>
+                  <div className=" flex gap-x-3 items-center py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0">
+                    <div className=" border  h-[10px] w-[10px] bg-[#c73636] rounded-[50%]"></div>
+                    <h3 className='font-dm font-medium text-[#767676] text-[16px] pt-1'>Color 5</h3>
                   </div>
                 </div>
+                }
               </div>
               <div className="py-4">
-                <div className=" flex justify-between items-center">
+                <div onClick={()=>handlebrn()} className=" flex justify-between items-center">
                   <h2 className=' font-dm font-bold text-[#262626] text-[15px] lg:text-[20px]'>Shop by Brand</h2>
-                  <IoMdArrowDropdown />
+                  {catebrn !== true ? <FaPlus/> : <FaMinus/>}
+                 
                 </div>
+                {catebrn &&
                 <div className="">
-                  <ul className='font-dm font-medium text-[#767676] text-[16px] pt-1 '>
-                    <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0'>Brand 1</li>
-                    <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0'>Brand 1</li>
-                    <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0'>Brand 1</li>
-                    <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0'>Brand 1</li>
-                    <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0'>Brand 1</li>
+                  {catebrand.map((item)=>(
+                    <ul className='font-dm font-medium text-[#767676] text-[16px] pt-1 '>
+                    <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0'>{item}</li>
                   </ul>
+                  ))}
+                  
                 </div>
+                }
               </div>
               <div className=" py-3">
-                <div className=" flex justify-between items-center">
+                <div onClick={()=>handleprice(!cateprice)} className=" flex justify-between items-center">
                   <h2 className=' font-dm font-bold text-[#262626] text-[15px] lg:text-[20px]'>Shop by Price</h2>
-                  <IoMdArrowDropdown />
+                  {cateprice == true ? <IoMdArrowDropup/> :<IoMdArrowDropdown />}
+                  
                 </div>
+                {cateprice &&
                 <div className="">
                   <ul className='font-dm font-medium text-[#767676] text-[9px] lg:text-[16px] pt-1 '>
                     <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0' >$0.00 - $9.99</li>
@@ -135,6 +170,7 @@ let prew =()=>{
                     <li className='py-4 border-b-2 border-[#d8d8d8b5] bottom-1 left-0'>$40.00 - $69.99</li>
                   </ul>
                 </div>
+                }
               </div>
             </div>
           </div>
@@ -179,7 +215,7 @@ let prew =()=>{
               </div>
             </div>
             <div className=" lg:text-end">
-              <Post Allpage={Allpage} />
+              <Post Allpage={Allpage} categoryFilter={categoryFilter} />
               <Paginationarea pageNumber={pageNumber} paginets={paginets} pageProdect={pageProdect} prew={prew} next={next}/>
             </div>
           </div>

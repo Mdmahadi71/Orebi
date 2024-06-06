@@ -10,6 +10,7 @@ import SingupPage from "./pages/SingupPage"
 import AccountPage from "./pages/AccountPage"
 import Shopdetils from "./components/Shopdetils"
 import CartPage from "./pages/CartPage"
+import Checkout from "./pages/Checkout"
 
 
 function App() {
@@ -26,6 +27,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/Singup" element={<SingupPage/>}> </Route>
     <Route path="/Myaccount" element={<AccountPage/>}> </Route>
     <Route path="/cart" element={<CartPage/>}> </Route>
+    <Route path="/checkout" element={<Checkout/>}> </Route>
   </Route>
 ))
   

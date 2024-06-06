@@ -8,18 +8,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productDecrement, productIncerment, removeProduct } from '../counter/Productslice';
 
 const CartPage = () => {
-  let dispatch = useDispatch()
-  let data = useSelector((state) => state.product.cartItem)
+    let dispatch = useDispatch()
+    let data = useSelector((state) => state.product.cartItem)
 
-  let hendelIcrement = (item) => {
-    dispatch(productIncerment(item))
+    let hendelIcrement = (item) => {
+      dispatch(productIncerment(item))
+    }
+    let hendledecrement = (item) => {
+      dispatch(productDecrement(item))
+    }
+    let hendleremove = (item) => {
+      dispatch(removeProduct(item))
   }
-  let hendledecrement = (item) => {
-    dispatch(productDecrement(item))
-  }
-  let hendleremove = (item) => {
-    dispatch(removeProduct(item))
- }
+  const {totalPrice,totalquntity} = data.reduce((acc , item)=>{
+    acc.totalPrice += item.price * item.qun
+    acc.totalquntity += item.qun
+    return acc
+  },{totalPrice:0 ,totalquntity:0 })
+
   return (
     <div className=" ">
       <Container>
@@ -79,6 +85,10 @@ const CartPage = () => {
             </div>
           </div>
         ))}
+
+
+
+
         <div className=" border-[2px] border-[#F0F0F0] py-5 px-2">
           <div className="flex justify-between items-center">
             <div className="flex justify-between items-center">
@@ -99,34 +109,56 @@ const CartPage = () => {
             </div>
           </div>
         </div>
-        <div className=" text-end">
-          <h2 className=' font-dm font-bold text-[20px] text-[#262626] py-5'>Cart totals</h2>
-          <div className="">
+
+
+
+
+
+        <div className=" flex justify-end">
+          <div className="w-[40%]  pt-[50px]">
             <div className="">
-              <h2 className=' border-[2px] border-[#F0F0F0] w-[130px] h-[50px]  text-center  inline-block'>Subtotal</h2>
-              <h2 className=' border-[2px] border-[#F0F0F0] w-[130px] h-[50px]  text-center  inline-block'>389.99 $</h2>
-            </div>
-            <div className="">
-              <h2 className=' border-[2px] border-[#F0F0F0] w-[130px] h-[50px]  text-center  inline-block'>Total</h2>
-              <h2 className=' border-[2px] border-[#F0F0F0] w-[130px] h-[50px] text-center inline-block'>389.99 $</h2>
+              <div className="pb-[24px] ">
+                <p className='text-[20px] text-[#262626] font-dm font-bold text-end '>Cart totals</p>
+              </div>
+              <div className="flex">
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Subtotal</p>
+                </div>
+                <div className="">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '> ${totalPrice}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex">
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Total Quntity</p>
+                </div>
+                <div className="">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>{totalquntity}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex">
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Total</p>
+                </div>
+                <div className="">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>${totalPrice}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-[20px] flex justify-end">
+                <div className="">
+                  <Link to='/checkout'>
+                  <button className='h-[50px] w-[200px] items-center text-[14px] text-[#262626] font-dm font-semibold border-[1px] border-[#767676] hover:text-[#fff] hover:bg-[#262626] duration-500 ease-in-out'>Proceed to Checkout</button>
+                  </Link>
+              </div>
             </div>
           </div>
-          {/* <div className="text-end">
-            <table className=' text-end' >
-              <tr  className=' text-end'>
-                <th className=' border-[2px] border-black py-2 px-2 text-center'>Subtotal</th>
-                <th className=' border-[2px] border-black  py-2 px-2 text-center'>389.99 $</th>
-              </tr>
-              <tr  className=' text-end'>
-              <td className=' border-[2px] border-black py-2 px-2 text-center'>Total</td>
-              <td className=' border-[2px] border-black py-2 px-2 text-center'>389.99 $</td>
-              </tr>
-            </table>
-          </div> */}
-          <div className="border-[2px] border-[#F0F0F0] py-3 px-4 inline-block my-10 bg-black
-           text-white hover:bg-white hover:text-black duration-300">
-            <span className=' font-dm font-medium'>Proceed to Checkout</span>
-          </div>
+        </div>
         </div>
       </Container>
     </div>

@@ -28,7 +28,7 @@ const Navbar = () => {
                     <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'>Journal</li>
                 </ul>
             </div>
-            <div className="lg:hidden " onClick={hendelshow}>
+            <div className="lg:hidden  text-[24px]" onClick={hendelshow}>
                 {show ?<RxCross2/> :<FaBars/>}
             </div>
         </Flex>
