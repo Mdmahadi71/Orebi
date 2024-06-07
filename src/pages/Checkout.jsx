@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../components/Container'
 import { TbPoint } from "react-icons/tb";
 import { TbPointFilled } from "react-icons/tb";
@@ -7,13 +7,19 @@ import { Link } from 'react-router-dom';
 
 
 const Checkout = () => {
+  let [showbank , setbank]= useState(false)
+
+  let handlebank = ()=>{
+    setbank(!showbank)
+  }
+
   return (
     <div>
       <Container>
-        <div className="w-[70%]">
+        <div className="lg:w-[70%]">
           <div className=" py-[20px]">
             <h3 className=' font-dm font-bold text-[49px] text-[#262626]'>Checkout</h3>
-            <span className=' font-dm font-normal text-[12px] text-[#6D6D60]'><Link to='/'>Home</Link> 	&gt; <Link to='/checkout'>Checkout</Link></span>
+            <span className=' font-dm font-normal text-[12px] text-[#6D6D60]'><Link to='/'>Home</Link> 	&gt; <Link to='/lastpage'>Checkout</Link></span>
           </div>
           <div className=" pt-[40px] pb-[10px]">
             <span className=' font-dm font-light text-[16px] text-[#6D6D60]'>Have a coupon? <span className=' font-dm font-light text-[16px] text-[#262626]'>Click here to enter your code</span></span>
@@ -77,64 +83,73 @@ const Checkout = () => {
             <div className="">
               <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>Your Order</h2>
               <div className="">
-                <div className="flex">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                    <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Product</p>
-                  </div>
-                  <div className="">
-                    <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                      <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>Total</p>
-                    </div>
-                  </div>
+              <div className="flex">
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px]  lg:w-[322px] w-[175px]   ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Product</p>
                 </div>
-                <div className="flex">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                    <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Product name x 1</p>
-                  </div>
-                  <div className="">
-                    <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                      <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>$098</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                    <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Subtotal</p>
-                  </div>
-                  <div className="">
-                    <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                      <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>$098</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                    <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Total</p>
-                  </div>
-                  <div className="">
-                    <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                      <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>$098</p>
-                    </div>
+                <div className=" ">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>Total</p>
                   </div>
                 </div>
               </div>
+              <div className="flex">
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px]  lg:w-[322px] w-[175px]   ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Product name x 1</p>
+                </div>
+                <div className=" ">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>243234</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex">
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px]  lg:w-[322px] w-[175px]   ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Subtotal</p>
+                </div>
+                <div className=" ">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>3453</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex">
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px]  lg:w-[322px] w-[175px]   ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Total</p>
+                </div>
+                <div className=" ">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>8998</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+
+
               <div className=" border-[1px] border-[#F0F0F0] py-[30px] px-[30px] my-7">
                   <div className=" flex justify-between items-center">
-                  <div className="w-[8%]">
-                    <div className="flex justify-between items-center">
-                    <TbPointFilled className=' text-[20px]'/>
+                  <div className="lg:w-[8%]">
+                    <div onClick={()=>handlebank(!showbank)} className="flex justify-between items-center">
+                      {showbank == true ? <TbPointFilled className=' text-[20px]'/> :  <TbPoint className=' text-[20px]'/>}
+                    
                     <h6 className=' font-dm font-bold text-[16px] text-[#262626]'> Bank</h6>
                     </div>
                   </div>
                   <div className="">
-                    <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>ata bad rakhben</h2>
+                    <h2 className=' font-dm font-bold lg:text-[39px] text-[20px] text-[#262626]'>ata bad rakhben</h2>
                   </div>
                   </div>
+                    {showbank &&
+                  <div className="">
                   <div className=" border-[1px] border-[#F7F8F9] px-10 py-5 bg-[#F7F8F9]">
                     <h1 className=' font-dm font-normal text-[16px] text-[#767676]'>Pay via Bank; you can pay with your credit card if you don’t have a Bank account.</h1>
                   </div>
+                  <div className=" "></div>
+                  </div>
+                    }
                   <div className="">
-                    <div className=" w-[10%]">
+                    <div className=" lg:w-[10%] w-[25%]">
                       <div className=" flex justify-between items-center">
                         <TbPoint className=' text-[20px]'/>
                         <p className=' font-dm font-bold text-[16px] text-[#262626]'>Bank 2</p>

@@ -141,8 +141,8 @@ const Manu = () => {
                             <IoSearch />
                         </div>
                     </div>
-                    <div className="w-[30%] ">
-                        <div className="flex justify-end gap-x-5">
+                    <div className="w-[27%] ">
+                        <div className="flex justify-end gap-x-6">
                             <div className=" relative">
                                 <div className="flex" ref={logmy}>
                                     <CiUser />
@@ -160,16 +160,19 @@ const Manu = () => {
                             <div className=" relative">
                                 <div className="">
                                     <div className=" relative cursor-pointer" ref={carmanu}>
-                                        {data.length ? <div className=" absolute top-[-15px] text-center h-[20px] w-[20px] bg-[#F5F5F3] leading-[20px] right-[-9px]">
+                                        {data.length ? <div className=" absolute top-[-15px] text-center lg:h-[20px] h-[15px] lg:w-[20px] w-[15px] bg-[#F5F5F3] leading-[20px] lg:right-[-9px] ">
                                             <h2 className=' font-dm text-[14px] text-[#262626]'>{data.length}</h2>
                                         </div> : ''}
                                         <FaCartArrowDown />
                                     </div>
                                 </div>
+
+                                
                                 {carshow &&
+                                <div className="">
+                                     {data.map((item ,i)=>(
                                     <div className="">
-                                        {data.map((item ,i)=>(
-                                               <div className=" w-[350px] border-2 border-[#F0F0F0] absolute z-50 top-[35px] right-0">
+                                         <div className=" w-[350px] border-2 border-[#F0F0F0] absolute z-50 top-[35px] right-0">
                                                <div className="">
    
                                                    <div className="flex justify-between items-center gap-2 bg-[#F5F5F3] ">
@@ -212,12 +215,12 @@ const Manu = () => {
                                                    </div>
                                                </div>
    
-                                           </div>
-                                        ))}
-                                     
-
-
+                                        </div>
+                                        
                                     </div>
+                                ))}
+                                </div>
+                               
                                 }
                             </div>
                         </div>

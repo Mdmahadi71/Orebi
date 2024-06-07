@@ -114,39 +114,39 @@ const CartPage = () => {
 
 
 
-        <div className=" flex justify-end">
-          <div className="w-[40%]  pt-[50px]">
+        <div className=" flex lg:justify-end justify-center">
+          <div className="lg:w-[40%]  pt-[50px]">
             <div className="">
               <div className="pb-[24px] ">
                 <p className='text-[20px] text-[#262626] font-dm font-bold text-end '>Cart totals</p>
               </div>
               <div className="flex">
-                <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Subtotal</p>
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-4 '>Subtotal</p>
                 </div>
                 <div className="">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
                     <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '> ${totalPrice}</p>
                   </div>
                 </div>
               </div>
               <div className="flex">
-                <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Total Quntity</p>
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px]  lg:w-[322px] w-[175px]   ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Total Quntity</p>
                 </div>
-                <div className="">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>{totalquntity}</p>
+                <div className=" ">
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>{totalquntity}</p>
                   </div>
                 </div>
               </div>
               <div className="flex">
-                <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] pl-[20px] '>Total</p>
+                <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[30px] '>Total</p>
                 </div>
                 <div className="">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] w-[322px] ">
-                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] pl-[20px] '>${totalPrice}</p>
+                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] px-4 '>${totalPrice}</p>
                   </div>
                 </div>
               </div>
@@ -160,6 +160,8 @@ const CartPage = () => {
           </div>
         </div>
         </div>
+
+
       </Container>
     </div>
   )

@@ -9,6 +9,7 @@ const Post = ({Allpage, categoryFilter}) => {
 
     let [showfilter , setfilter]= useState([])
     let [allshowitm , setallshowitem]= useState(false)
+    let [habib, sethabib]= useState([])
 
 
     useEffect(()=>{
@@ -24,7 +25,7 @@ const Post = ({Allpage, categoryFilter}) => {
       setallshowitem(!allshowitm)
     }
     let hendleprev = () =>{
-      setfilter(caterfilter)
+      sethabib(!showfilter)
     }
    
     
@@ -69,11 +70,11 @@ const Post = ({Allpage, categoryFilter}) => {
             
           ))}
          </div>
-          <div onClick={hendleshowff} className=" inline-block">
-            {/* {allshowitm &&
-               <h2 onClick={hendleprev}>prev</h2>
-            } */}
-            {allshowitm == true ? <h2 onClick={hendleprev}>prev</h2> : <h2 onClick={hendleshow}>Show all</h2>}
+          <div onClick={hendleshowff} className=" font-dm font-bold text-[16px] text-[#262626]
+           border-[1px] border-[#262626] h-[50px] w-[100px] leading-[50px]  items-center text-center
+            bg-[#ffff] hover:bg-black hover:text-[#ffff] duration-500 inline-block">
+            {allshowitm == true ? <h2 onClick={hendleprev}>Prev</h2>
+             : <h2 onClick={hendleshow}>Show all</h2>}
           </div>
            </div>
           :
