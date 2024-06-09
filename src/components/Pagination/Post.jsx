@@ -25,7 +25,8 @@ const Post = ({Allpage, categoryFilter}) => {
       setallshowitem(!allshowitm)
     }
     let hendleprev = () =>{
-      sethabib(!showfilter)
+      let habib = setfilter.slice(categoryFilter)
+      sethabib(habib)
     }
    
     
@@ -73,7 +74,7 @@ const Post = ({Allpage, categoryFilter}) => {
           <div onClick={hendleshowff} className=" font-dm font-bold text-[16px] text-[#262626]
            border-[1px] border-[#262626] h-[50px] w-[100px] leading-[50px]  items-center text-center
             bg-[#ffff] hover:bg-black hover:text-[#ffff] duration-500 inline-block">
-            {allshowitm == true ? <h2 onClick={hendleprev}>Prev</h2>
+            {allshowitm == true ? <h2 onClick={()=>hendleprev(!habib)}>Hide</h2>
              : <h2 onClick={hendleshow}>Show all</h2>}
           </div>
            </div>
