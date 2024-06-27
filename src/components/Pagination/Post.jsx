@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { FaHeart } from "react-icons/fa6";
 import { TfiReload } from "react-icons/tfi";
 import { FaCartArrowDown } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { addtoCart } from '../../counter/Productslice';
 
 
-const Post = ({Allpage, categoryFilter}) => {
 
+const Post = ({Allpage, categoryFilter,gridlist}) => {
+    let dispatch = useDispatch()
+    let navigate = useNavigate()
     let [showfilter , setfilter]= useState([])
     let [allshowitm , setallshowitem]= useState(false)
     let [habib, sethabib]= useState([])
@@ -28,14 +32,21 @@ const Post = ({Allpage, categoryFilter}) => {
       let habib = setfilter.slice(categoryFilter)
       sethabib(habib)
     }
+    let adddetils = (habib) =>{
+      dispatch(addtoCart({...habib , qun:1}))
+      setTimeout(() => {
+        navigate('/shop') 
+      })
+    }
+    
    
     
     return (
         <div className="">
-        <div className=" flex justify-between flex-wrap lg:gap-0 gap-1">
+        <div className={`${gridlist == 'activeMulti' ? '' :'flex justify-between flex-wrap lg:gap-0 gap-1'}`}>
           {categoryFilter.length > 0 ?
            <div className="">
-         <div className="flex justify-between flex-wrap lg:gap-0 gap-1">
+         <div className='flex justify-between flex-wrap lg:gap-0 gap-1'>
          {  showfilter.map((habib) => (
             <div className="lg:w-[33%] w-[49%]">
                 <Link to={`/Shop/${habib.id}`}>
@@ -54,7 +65,7 @@ const Post = ({Allpage, categoryFilter}) => {
                         hover:text-[#262626] duration-500'>Compare</h2>
                       <TfiReload />
                     </div>
-                    <div className="flex justify-end gap-2 items-center lg:py-3 py-1">
+                    <div  className="flex justify-end gap-2 items-center lg:py-3 py-1">
                       <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold 
                         hover:text-[#262626] duration-500'>Add to Cart</h2>
                       <FaCartArrowDown />
@@ -97,7 +108,7 @@ const Post = ({Allpage, categoryFilter}) => {
                         hover:text-[#262626] duration-500'>Compare</h2>
                       <TfiReload />
                     </div>
-                    <div className="flex justify-end gap-2 items-center lg:py-3 py-1">
+                    <div onClick={()=>adddetils(habib)} className="flex justify-end gap-2 items-center lg:py-3 py-1">
                       <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold 
                         hover:text-[#262626] duration-500'>Add to Cart</h2>
                       <FaCartArrowDown />

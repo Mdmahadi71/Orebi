@@ -13,7 +13,7 @@ import { IoMdArrowDropup } from "react-icons/io";
 
 
 const Shop = () => {
-
+  let [gridlist , setgridlist] = useState('')
   let itemss = useContext(DataApi)
   let [pageProdect, setpgeProduct] = useState(1)
   let [perPage, setparPage] = useState(6)
@@ -78,6 +78,9 @@ const Shop = () => {
   let handlecateg = (cItem)=>{
     let cateFilter = itemss.filter((item)=>item.category == cItem)
     setcategoryFilter(cateFilter)
+  }
+  let handlelist = ()=>{
+    setgridlist('activeMulti')
   }
 
 
@@ -178,10 +181,10 @@ const Shop = () => {
             <div className="  flex justify-between items-center py-[50px]">
               <div className="lg:w-[20%]">
                 <div className="lg:flex gap-x-3">
-                  <div className="border-2 border-[#F0F0F0] py-3 px-4 bg-black text-white hover:bg-white hover:text-black duration-500">
+                  <div onClick={()=>setgridlist('')} className="border-2 border-[#F0F0F0] py-3 px-4 bg-black text-white hover:bg-white hover:text-black duration-500">
                     <IoGrid />
                   </div>
-                  <div className="border-2 border-[#F0F0F0] py-3 px-4 bg-white text-[#262626] hover:bg-black hover:text-white duration-500">
+                  <div onClick={handlelist} className="border-2 border-[#F0F0F0] py-3 px-4 bg-white text-[#262626] hover:bg-black hover:text-white duration-500">
                     <FaList />
                   </div>
                 </div>
@@ -215,7 +218,7 @@ const Shop = () => {
               </div>
             </div>
             <div className=" lg:text-end">
-              <Post Allpage={Allpage} categoryFilter={categoryFilter} />
+              <Post Allpage={Allpage} categoryFilter={categoryFilter} gridlist={gridlist} />
               <Paginationarea pageNumber={pageNumber} paginets={paginets} pageProdect={pageProdect} prew={prew} next={next}/>
             </div>
           </div>
