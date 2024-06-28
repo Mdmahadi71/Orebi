@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from './Container'
 import { Link } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Contact = () => {
+    const auth = getAuth();
+
+    let [email, setemail] = useState("")
+    let [password , setpassword] = useState("")
+
+    let handlesingIn=()=>{
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log(userCredential);
+            console.log('successfull');
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          console.log(errorCode);
+        });
+    }
+
     return (
         <div>
             <Container>
@@ -16,18 +34,21 @@ const Contact = () => {
                     <h2 className=' font-dm font-bold text-[25px] text-[#262626]'>Fill up a Form</h2>
                     <div className="">
                         <h2 className=' font-dm font-bold text-[19px] text-[#262626] py-4'>Name</h2>
-                        <input type="text" className='border-b-2 border-[#D8D8D8] w-full font-dm font-light text-[14px]
+                        <input  type="text" className='border-b-2 border-[#D8D8D8] w-full font-dm font-light text-[14px]
                              text-[#262626]' placeholder='Your name here' />
                         <h2 className=' font-dm font-bold text-[19px] text-[#262626] py-4'>Email</h2>
-                        <input type="text" className='border-b-2 border-[#D8D8D8] w-full font-dm font-light text-[14px]
+                        <input onChange={(e)=>setemail(e.target.value)} type="text" className='border-b-2 border-[#D8D8D8] w-full font-dm font-light text-[14px]
                              text-[#262626]' placeholder='Your email here' />
+                             <h2 className=' font-dm font-bold text-[19px] text-[#262626] py-4'>Password</h2>
+                        <input onChange={(e)=>setpassword(e.target.value)} type="password" className='border-b-2 border-[#D8D8D8] w-full font-dm font-light text-[14px]
+                             text-[#262626]' placeholder='Password' />
                         <h2 className=' font-dm font-bold text-[19px] text-[#262626] py-4'>Message</h2>
                         <input type="text" className='border-b-2 border-[#D8D8D8] w-full font-dm font-light text-[14px]
                              text-[#262626]' placeholder='Your message here' />
                         <div className="pt-[30px]">
                             <div className=" border-2 border-black py-2 px-[40px] bg-black text-[#fff] inline-block cursor-pointer hover:bg-white hover:text-black duration-500">
                                 <form>
-                                    <input type="submit" className=' font-dm font-bold text-[16px] ' value="Post"></input>
+                                    <input onClick={handlesingIn} type="submit" className=' font-dm font-bold text-[16px] ' value="Post"></input>
                                 </form>
                             </div>
                         </div>

@@ -6,6 +6,9 @@ import "slick-carousel/slick/slick.css";
 import { ContextApi } from './components/ContextApi.jsx';
 import { Provider } from 'react-redux'
 import { store } from './Store.js';
+import firebaseConfi from './firebaseConfi.js';
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   < ContextApi >
@@ -13,7 +16,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <App />
     </Provider>
   </ ContextApi>
-
-
-
+  
 )
