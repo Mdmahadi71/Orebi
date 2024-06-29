@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Container from './Container'
 import Flex from './Flex'
 import { FaBarsStaggered } from "react-icons/fa6";
@@ -10,8 +10,10 @@ import { useRef } from 'react';
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { DataApi } from './ContextApi';
 
 const Manu = () => {
+    let info = useContext(DataApi)
     let data = useSelector((state) => state.product.cartItem)
     let dispatch = useDispatch()
     let [cateshow, catesetshow] = useState(false)
@@ -22,7 +24,8 @@ const Manu = () => {
     let carmanu = useRef()
     let [elecshow, elecsetshow] = useState(false)
     let elecmanu = useRef()
-
+    let [searchChange, setsearchChange] = useState('')
+    let [searchFilter, setsearchFilter] = useState([])
 
 
 
@@ -50,6 +53,17 @@ const Manu = () => {
             }
         })
     }, [cateshow, logshow, carshow, elecshow])
+
+    let handelCharce = (e) => {
+        setsearchChange(e.target.value)
+        if(e.target.value == ''){
+            setsearchFilter([])
+        }else{
+            let searchFind = info.filter((item) => item.title.toLowerCase().includes(e.target.value))
+            setsearchFilter(searchFind);
+        }
+     
+    }
 
 
     return (
@@ -135,12 +149,34 @@ const Manu = () => {
                             </div>
                         }
                     </div>
-                    <div className="w-[40%]  relative">
-                        <input type="text" placeholder='Search Products' className=' border-2 border-[#222] h-12 w-full pl-2 ' />
+                    <div className="w-[40%] ">
+                       <div className="relative">
+                       <input onChange={handelCharce} type="text" placeholder='Search Products' className=' border-2 border-[#222] h-12 w-full pl-2 ' />
                         <div className=" absolute  lg:right-[10px] right-0 top-[50%] translate-y-[-50%] ">
                             <IoSearch />
                         </div>
+
+                       </div>
+                          {searchFilter.length > 0 &&
+                        <div className="h-[500px] overflow-scroll">
+                            {searchFilter.map((item)=>(
+                                 <div className="flex justify-between items-center gap-2 bg-[#F5F5F3]  ">
+                                 <div className="flex justify-between items-center gap-x-3 px-2 py-5">
+                                     <div className=" ">
+                                         <img src={item.thumbnail} alt="" />
+                                     </div>
+                                     <div className=" w-full">
+                                         <h3 className=' font-dm text-black font-samibold text-[14px]'>{item.title}</h3>
+                                         <h3 className='font-dm text-black font-bold text-[14px]'>${item.price}</h3>
+                                     </div>
+                                 </div>
+                             </div>
+                            ))}
+                           
+                        </div>
+                         }
                     </div>
+                    
                     <div className="w-[27%] ">
                         <div className="flex justify-end gap-x-6">
                             <div className=" relative">
@@ -167,60 +203,60 @@ const Manu = () => {
                                     </div>
                                 </div>
 
-                                
+
                                 {carshow &&
-                                <div className="">
-                                     {data.map((item ,i)=>(
                                     <div className="">
-                                         <div className=" w-[350px] border-2 border-[#F0F0F0] absolute z-50 top-[35px] right-0">
-                                               <div className="">
-   
-                                                   <div className="flex justify-between items-center gap-2 bg-[#F5F5F3] ">
-                                                       <div className="flex justify-between items-center gap-x-3 px-2 py-5">
-                                                           <div className=" ">
-                                                               <img src={item.thumbnail} alt="" />
-                                                           </div>
-                                                           <div className=" w-full">
-                                                               <h3 className=' font-dm text-black font-samibold text-[14px]'>{item.title}</h3>
-                                                               <h3 className='font-dm text-black font-bold text-[14px]'>${item.price}</h3>
-                                                           </div>
-                                                       </div>
-                                                       <div className="px-4 py-2">
-                                                           <div onClick={()=>dispatch(productdlt(i))} className="font-dm text-black 
+                                        {data.map((item, i) => (
+                                            <div className="">
+                                                <div className=" w-[350px] border-2 border-[#F0F0F0] absolute z-50 top-[35px] right-0">
+                                                    <div className="">
+
+                                                        <div className="flex justify-between items-center gap-2 bg-[#F5F5F3] ">
+                                                            <div className="flex justify-between items-center gap-x-3 px-2 py-5">
+                                                                <div className=" ">
+                                                                    <img src={item.thumbnail} alt="" />
+                                                                </div>
+                                                                <div className=" w-full">
+                                                                    <h3 className=' font-dm text-black font-samibold text-[14px]'>{item.title}</h3>
+                                                                    <h3 className='font-dm text-black font-bold text-[14px]'>${item.price}</h3>
+                                                                </div>
+                                                            </div>
+                                                            <div className="px-4 py-2">
+                                                                <div onClick={() => dispatch(productdlt(i))} className="font-dm text-black 
                                                            font-extrabold text-[24px] cursor-pointer">
-                                                               <ImCross />
-                                                           </div>
-                                                       </div>
-                                                   </div>
-   
-                                               </div>
-                                               <div className="px-4 py-5 bg-[#FFFFFF]">
-                                                   <div className="">
-                                                       <h3 ><samp className='font-dm text-[#767676] font-bold text-[16px]'>Subtotal:</samp>
-                                                           <samp className=' font-dm text-black  font-extrabold text-[16px]'>${item.price * item.qun}</samp></h3>
-                                                   </div>
-                                                   <div className="flex justify-between gap-1 pt-2">
-                                                       <div className="border-2 border-[#222] py-3 px-8 bg-black font-dm text-[14px] font-bold
+                                                                    <ImCross />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div className="px-4 py-5 bg-[#FFFFFF]">
+                                                        <div className="">
+                                                            <h3 ><samp className='font-dm text-[#767676] font-bold text-[16px]'>Subtotal:</samp>
+                                                                <samp className=' font-dm text-black  font-extrabold text-[16px]'>${item.price * item.qun}</samp></h3>
+                                                        </div>
+                                                        <div className="flex justify-between gap-1 pt-2">
+                                                            <div className="border-2 border-[#222] py-3 px-8 bg-black font-dm text-[14px] font-bold
                                                      text-white hover:bg-white hover:text-black duration-200">
-                                                        <Link to='/cart'>
-                                                           <h2>View Cart</h2>
-                                                           </Link> 
-                                                       </div>
-                                                       <div className="border-2 border-[#222] py-3 px-8 bg-black text-white font-dm text-[14px] 
+                                                                <Link to='/cart'>
+                                                                    <h2>View Cart</h2>
+                                                                </Link>
+                                                            </div>
+                                                            <div className="border-2 border-[#222] py-3 px-8 bg-black text-white font-dm text-[14px] 
                                                     font-bold hover:bg-white hover:text-black duration-200">
-                                                         <Link to='/checkout'>
-                                                           <h3>Checkout</h3>
-                                                           </Link>
-                                                       </div>
-                                                   </div>
-                                               </div>
-   
-                                        </div>
-                                        
+                                                                <Link to='/checkout'>
+                                                                    <h3>Checkout</h3>
+                                                                </Link>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                                </div>
-                               
+
                                 }
                             </div>
                         </div>
