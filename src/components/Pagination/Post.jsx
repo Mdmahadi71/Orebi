@@ -34,9 +34,7 @@ const Post = ({Allpage, categoryFilter,gridlist}) => {
     }
     let adddetils = (habib) =>{
       dispatch(addtoCart({...habib , qun:1}))
-      setTimeout(() => {
-        navigate('/shop') 
-      })
+      
     }
     
    
@@ -49,10 +47,12 @@ const Post = ({Allpage, categoryFilter,gridlist}) => {
          <div className='flex justify-between flex-wrap lg:gap-0 gap-1'>
          {  showfilter.map((habib) => (
             <div className="lg:w-[33%] w-[49%]">
-                <Link to={`/Shop/${habib.id}`}>
+
               <div className=" lg:my-[30px]">
                 <div className="relative group overflow-hidden">
+                <Link to={`/Shop/${habib.id}`}>
                   <img src={habib.thumbnail} className=' lg:w-[97%] w-[50%] h-[200px] lg:h-[300px] ' alt="" />
+                  </Link>
                   <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
                                 group-hover:h-[-150px] group-hover:bottom-0 duration-300">
                     <div className="flex justify-end gap-2 items-center lg:py-3">
@@ -65,7 +65,7 @@ const Post = ({Allpage, categoryFilter,gridlist}) => {
                         hover:text-[#262626] duration-500'>Compare</h2>
                       <TfiReload />
                     </div>
-                    <div  className="flex justify-end gap-2 items-center lg:py-3 py-1">
+                    <div onClick={()=>adddetils(habib)}  className="flex justify-end gap-2 items-center lg:py-3 py-1">
                       <h2 className=' font-dm font-medium text-[15px] text-[#767676] hover:font-bold 
                         hover:text-[#262626] duration-500'>Add to Cart</h2>
                       <FaCartArrowDown />
@@ -77,7 +77,7 @@ const Post = ({Allpage, categoryFilter,gridlist}) => {
                   <p className=' font-dm font-medium lg:text-[16px] text-[14px] text-[#767676]'>${habib.price}</p>
                 </div>
               </div>
-              </Link>
+              
             </div>
             
           ))}
@@ -92,10 +92,12 @@ const Post = ({Allpage, categoryFilter,gridlist}) => {
           :
           Allpage.map((habib) => (
             <div className="lg:w-[33%] w-[49%]">
-                <Link to={`/Shop/${habib.id}`}>
+                
               <div className=" lg:my-[30px]">
                 <div className="relative group overflow-hidden">
+                <Link to={`/Shop/${habib.id}`}>
                   <img src={habib.thumbnail} className=' lg:w-[97%] w-[50%] h-[200px] lg:h-[300px] ' alt="" />
+                  </Link>
                   <div className=" w-full h-[-150px] bg-white  absolute bottom-[-150px] right-0 py-2 
                                 group-hover:h-[-150px] group-hover:bottom-0 duration-300">
                     <div className="flex justify-end gap-2 items-center lg:py-3">
@@ -120,7 +122,7 @@ const Post = ({Allpage, categoryFilter,gridlist}) => {
                   <p className=' font-dm font-medium lg:text-[16px] text-[14px] text-[#767676]'>${habib.price}</p>
                 </div>
               </div>
-              </Link>
+              
             </div>
             
           ))

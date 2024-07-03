@@ -9,7 +9,7 @@ import { IoSearch } from "react-icons/io5";
 import { useRef } from 'react';
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { DataApi } from './ContextApi';
 
 const Manu = () => {
@@ -26,6 +26,8 @@ const Manu = () => {
     let elecmanu = useRef()
     let [searchChange, setsearchChange] = useState('')
     let [searchFilter, setsearchFilter] = useState([])
+    let navigate = useNavigate()
+    let [selectedItemIndex, setSelectedItemIndex] = useState(-1); 
 
 
 
@@ -64,6 +66,21 @@ const Manu = () => {
         }
      
     }
+    let handelcart = (id)=>{
+        navigate(`/Shop/${id}`)
+        setsearchFilter('')
+        setsearchChange('')
+        
+    }
+    const handleKeyDown = (e) => {
+        if (e.key === 'ArrowDown') {
+            setSelectedItemIndex(prevIndex => Math.min(prevIndex + 1, searchFilter.length - 1));
+        } else if (e.key === 'ArrowUp') {
+            setSelectedItemIndex(prevIndex => Math.max(prevIndex - 1, -1));
+        } else if (e.key === 'Enter' && selectedItemIndex !== -1) {
+            handleSingleP(searchFilter[selectedItemIndex].id);
+        }
+    };
 
 
     return (
@@ -151,16 +168,20 @@ const Manu = () => {
                     </div>
                     <div className="w-[40%] ">
                        <div className="relative">
-                       <input onChange={handelCharce} type="text" placeholder='Search Products' className=' border-2 border-[#222] h-12 w-full pl-2 ' />
+                       <input onChange={handelCharce} onKeyDown={handleKeyDown} value={searchChange}  type="text" placeholder='Search Products' className=' border-2 border-[#222] h-12 w-full pl-2 ' />
                         <div className=" absolute  lg:right-[10px] right-0 top-[50%] translate-y-[-50%] ">
                             <IoSearch />
                         </div>
 
                        </div>
                           {searchFilter.length > 0 &&
-                        <div className="h-[500px] overflow-scroll">
-                            {searchFilter.map((item)=>(
-                                 <div className="flex justify-between items-center gap-2 bg-[#F5F5F3]  ">
+                        <div className="h-[500px] w-[450px] overflow-scroll absolute z-20">
+                            {searchFilter.map((item ,index)=>(
+                                 <div
+                                 key={item.id}
+                                 className={`flex bg-[#F5F5F3] py-[20px] px-[20px] ${index === selectedItemIndex ? 'bg-gray-200' : ''}`}
+                                 
+                                 onClick={()=>handelcart(item.id)} >
                                  <div className="flex justify-between items-center gap-x-3 px-2 py-5">
                                      <div className=" ">
                                          <img src={item.thumbnail} alt="" />

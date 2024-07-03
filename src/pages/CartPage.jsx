@@ -10,6 +10,8 @@ import { productDecrement, productIncerment, removeProduct } from '../counter/Pr
 const CartPage = () => {
     let dispatch = useDispatch()
     let data = useSelector((state) => state.product.cartItem)
+   
+
 
     let hendelIcrement = (item) => {
       dispatch(productIncerment(item))

@@ -17,6 +17,7 @@ import LastPage from "./pages/LastPage"
 function App() {
 
 const router = createBrowserRouter(createRoutesFromElements(
+  <>
   <Route element={<Layout/>}>
     <Route path="/" element={<Home/>}> </Route>
     <Route path="/Shop" element={<ShopPage/>}> </Route>
@@ -28,8 +29,10 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/Myaccount" element={<AccountPage/>}> </Route>
     <Route path="/cart" element={<CartPage/>}> </Route>
     <Route path="/checkout" element={<Checkout/>}> </Route>
-    <Route path="/lastpage" element={<LastPage/>}> </Route>
+    
   </Route>
+  <Route path="/*" element={<LastPage/>}> </Route>
+  </>
 ))
   
   return (

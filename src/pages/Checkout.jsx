@@ -1,17 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import { TbPoint } from "react-icons/tb";
 import { TbPointFilled } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getDatabase, ref, onValue } from "firebase/database";
 
 
 
-const Checkout = () => {
-  let [showbank , setbank]= useState(false)
+    const Checkout = () => {
+      let data = useSelector((state)=> state.product.cartItem)
+      const db = getDatabase();
 
-  let handlebank = ()=>{
-    setbank(!showbank)
-  }
+      let [showbank, setbank] = useState(false)
+      let [namel ,setnamel] = useState([])
+
+      let handlebank = () => {
+        setbank(!showbank)
+      }
+      const {totalPrice,totalquntity} = data.reduce((acc , item)=>{
+        acc.totalPrice += item.price * item.qun
+        acc.totalquntity += item.qun
+        return acc
+      },{totalPrice:0 ,totalquntity:0 })
+
+      useEffect(() => {
+        const starCountRef = ref(db, "users/");
+        onValue(starCountRef, (snapshot) => {
+          snapshot.forEach((item) => {
+            setnamel(item.val());
+          });
+        });
+      }, []);
+
 
   return (
     <div>
@@ -24,54 +45,57 @@ const Checkout = () => {
           <div className=" pt-[40px] pb-[10px]">
             <span className=' font-dm font-light text-[16px] text-[#6D6D60]'>Have a coupon? <span className=' font-dm font-light text-[16px] text-[#262626]'>Click here to enter your code</span></span>
           </div>
-          <div className="py-4">
+      
+            <div className="py-4">
             <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>Billing Details</h2>
-
+        
             <div className=" flex justify-between">
               <div className="w-[48%]">
                 <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>First Name *</h2>
-                <input type="text" placeholder='First Name' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+                <input type="text" placeholder='First Name' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
               </div>
               <div className="w-[48%]">
                 <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Last Name *</h2>
-                <input type="text" placeholder='Last Name ' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+                <input type="text" placeholder='Last Name ' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
               </div>
 
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Companye Name (optional)</h2>
-              <input type="text" placeholder='Company Name ' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type="text" placeholder='Company Name ' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Country *</h2>
-              <input type='text' placeholder='Company Name ' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type='text' placeholder='Company Name ' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Street Address *</h2>
-              <input type='text' placeholder='House number and street name' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
-              <input type='text' placeholder='Apartment, suite, unit etc. (optional)' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type='text' placeholder='House number and street name' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
+              <input type='text' placeholder='Apartment, suite, unit etc. (optional)' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Town/City *</h2>
-              <input type='text' placeholder='Town/City' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type='text' placeholder='Town/City' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>County (optional)</h2>
-              <input type='text' placeholder='County' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type='text' placeholder='County' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Post Code *</h2>
-              <input type='number' placeholder='Post Code' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type='number' placeholder='Post Code' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Phone *</h2>
-              <input type='number' placeholder='Phone' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type='number' placeholder='Phone' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
             <div className="py-4">
               <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>Email Address *</h2>
-              <input type='email' placeholder='Email' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676]' />
+              <input type='email' placeholder='Email' className=' border-b-[1px] border-[#D8D8D8] py-2 w-full font-dm font-medium text-[14px] text-[#767676] outline-none' />
             </div>
           </div>
+
+          
           <div className=" pb-[30px] border-b-[1px] border-[#F0F0F0] mb-[20px]">
             <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>Additional Information</h2>
             <div className="">
@@ -79,27 +103,21 @@ const Checkout = () => {
               <p className=' font-dm font-normal text-[14px] text-[#767676]'>Notes about your order, e.g. special notes for delivery.</p>
             </div>
           </div>
+          <div className=" py-[30px]">
+              <h2 className=' font-dm font-bold text-[16px] text-[#262626]'>{namel.username}</h2>
+              <h3 className=' font-dm font-bold text-[16px] text-[#262626]'>{namel.email}</h3>
+            </div>
           <div className="">
             <div className="">
               <h2 className=' font-dm font-bold text-[39px] text-[#262626]'>Your Order</h2>
               <div className="">
               <div className="flex">
                 <div className=" border-[1px] border-[#F0F0F0] h-[54px]  lg:w-[322px] w-[175px]   ">
-                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Product</p>
+                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Total Quntity</p>
                 </div>
                 <div className=" ">
                   <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
-                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>Total</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex">
-                <div className=" border-[1px] border-[#F0F0F0] h-[54px]  lg:w-[322px] w-[175px]   ">
-                  <p className='text-[16px] text-[#262626] font-dm font-bold leading-[50px] lg:pl-[20px] px-[19px] '>Product name x 1</p>
-                </div>
-                <div className=" ">
-                  <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
-                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>243234</p>
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>{totalquntity}</p>
                   </div>
                 </div>
               </div>
@@ -109,7 +127,7 @@ const Checkout = () => {
                 </div>
                 <div className=" ">
                   <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
-                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>3453</p>
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>{totalPrice}</p>
                   </div>
                 </div>
               </div>
@@ -119,7 +137,7 @@ const Checkout = () => {
                 </div>
                 <div className=" ">
                   <div className=" border-[1px] border-[#F0F0F0] h-[54px] lg:w-[322px] w-[175px] ">
-                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>8998</p>
+                    <p className='text-[16px] text-[#767676] font-dm font-bold leading-[50px] lg:pl-[20px] pl-[19px] '>{totalPrice}</p>
                   </div>
                 </div>
               </div>
