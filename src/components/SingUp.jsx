@@ -5,6 +5,7 @@ import { getAuth, createUserWithEmailAndPassword , updateProfile  } from "fireba
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getDatabase, ref, set ,onValue} from "firebase/database";
+import { RxEyeClosed ,RxEyeOpen  } from "react-icons/rx";
 
 
 const SingUp = () => {
@@ -17,6 +18,8 @@ const SingUp = () => {
     let [lastname, setlastname] = useState('')
     let [repetpass, setrepetpass] = useState('')
     let [namelll , setnamelll] = useState([])
+    let [passwordShow,setpasswordShow] = useState(false)
+    let [repassShow ,setrepassShow] = useState(false)
     let navigate = useNavigate('')
 
 
@@ -179,14 +182,20 @@ const SingUp = () => {
                     <div className="">
                         <h2 className='font-dm font-bold text-[49px] text-[#262626]'>Your Password</h2>
                         <div className=" flex justify-between lg:gap-x-5 gap-x-2">
-                            <div className="w-[50%]">
+                            <div className="w-[50%] relative">
                                 <h3 className=' font-dm font-bold text-[20px] text-[#262626]'>Password</h3>
-                                <input type="password" onChange={(e)=>setpassword(e.target.value)} placeholder='Password' className='border-b-2 border-[#F0F0F0] w-full py-4 font-dm font-light text-[16px] text-[#767676] outline-none' />
+                                <input type={passwordShow == true ? 'text'  :  'password'} onChange={(e)=>setpassword(e.target.value)} placeholder='Password' className='border-b-2 border-[#F0F0F0] w-full py-4 font-dm font-light text-[16px] text-[#767676] outline-none' />
+                                <div onClick={()=>setpasswordShow(!passwordShow)} className=" absolute top-[45px] right-[10px]">
+                                    {passwordShow == true ? <RxEyeOpen /> : <RxEyeClosed/>}
+                                </div>
                             </div>
 
-                            <div className="w-[50%]">
+                            <div className="w-[50%] relative">
                                 <h3 className=' font-dm font-bold text-[20px] text-[#262626]'>Repeat Pass</h3>
-                                <input type="password" onChange={(e)=>setrepetpass(e.target.value)}  placeholder='Repeat password' className='border-b-2 border-[#F0F0F0] w-full py-4 font-dm font-light text-[16px] text-[#767676] outline-none' />
+                                <input type={repassShow == true ? 'text'  :  'password'} onChange={(e)=>setrepetpass(e.target.value)}  placeholder='Repeat password' className='border-b-2 border-[#F0F0F0] w-full py-4 font-dm font-light text-[16px] text-[#767676] outline-none' />
+                                <div onClick={()=>setrepassShow(!repassShow)} className=" absolute top-[45px] right-[10px]">
+                                    {repassShow == true ? <RxEyeOpen /> : <RxEyeClosed/>}
+                                </div>
                             </div>
                         </div>
                     </div>

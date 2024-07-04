@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RxEyeClosed ,RxEyeOpen  } from "react-icons/rx";
 
 
 
@@ -14,6 +15,7 @@ const Login = () => {
     let [password ,setpassword]= useState("")
     let [name , setName] = useState("")
     let navigate = useNavigate('')
+    let [logpassShow,setlogpassShow] = useState(false)
 
     let handelInlog = ()=>{
         signInWithEmailAndPassword(auth, email, password)
@@ -60,9 +62,12 @@ const Login = () => {
                             <h2 className=' font-dm font-bold text-[20px] text-[#262626]'>Email address</h2>
                             <input type="email" onChange={(e)=>setemail(e.target.value)} placeholder='habibalmasud@gmail.com' className='border-b-2 border-[#F0F0F0] w-full py-4 font-dm font-light text-[16px] text-[#767676] outline-none' />
                         </div>
-                        <div className="w-[31%]  py-[20px]">
+                        <div className="w-[31%]  py-[20px] relative">
                             <h2 className=' font-dm font-bold text-[20px] text-[#262626]'>Password</h2>
-                            <input type="password" onChange={(e)=>setpassword(e.target.value)} placeholder='*******' className='border-b-2 border-[#F0F0F0] w-full py-4 font-dm font-light text-[16px] text-[#767676] outline-none' />
+                            <input type={logpassShow == true ? 'text' : 'password'} onChange={(e)=>setpassword(e.target.value)} placeholder='*******' className='border-b-2 border-[#F0F0F0] w-full py-4 font-dm font-light text-[16px] text-[#767676] outline-none' />
+                            <div onClick={()=>setlogpassShow(!logpassShow)} className=" absolute top-[68px] right-[10px]">
+                                    {logpassShow == true ? <RxEyeOpen /> : <RxEyeClosed/>}
+                                </div>
                         </div>
                     </div>
                     <div className="py-[20px] ">

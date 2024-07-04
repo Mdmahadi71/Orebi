@@ -25,7 +25,7 @@ const Navbar = () => {
                     <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='/Shop'>Shop</Link></li>
                     <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='About'>About</Link></li>
                     <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='Contacts'>Contacts</Link></li>
-                    <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'>Journal</li>
+                    <li className=' font-dm text-[#262626] font-bold text-[16px] px-5 lg:py-0 py-2'><Link to='/Singup'>Sing up</Link></li>
                 </ul>
             </div>
             <div className="lg:hidden  text-[24px]" onClick={hendelshow}>
