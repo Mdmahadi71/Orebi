@@ -28,6 +28,7 @@ const Manu = () => {
     let [searchFilter, setsearchFilter] = useState([])
     let navigate = useNavigate()
     let [selectedItemIndex, setSelectedItemIndex] = useState(-1); 
+    let cartRef = useRef();
 
 
 
@@ -53,6 +54,9 @@ const Manu = () => {
             } else {
                 carsetshow(false)
             }
+            if(cartRef.current.contains(e.target)){
+                carsetshow(true)
+              }
         })
     }, [cateshow, logshow, carshow, elecshow])
 
@@ -217,15 +221,72 @@ const Manu = () => {
                             <div className=" relative">
                                 <div className="">
                                     <div className=" relative cursor-pointer" ref={carmanu}>
-                                        {data.length ? <div className=" absolute top-[-15px] text-center lg:h-[20px] h-[15px] lg:w-[20px] w-[15px] bg-[#F5F5F3] leading-[20px] lg:right-[-9px] ">
+                                        {data.length ? (<div className=" absolute top-[-15px] text-center lg:h-[20px] h-[15px] 
+                                        lg:w-[20px] w-[15px] bg-[#F5F5F3] leading-[20px] lg:right-[-9px] ">
                                             <h2 className=' font-dm text-[14px] text-[#262626]'>{data.length}</h2>
-                                        </div> : ''}
+                                        </div>) :( '' )}
                                         <FaCartArrowDown />
                                     </div>
                                 </div>
 
-
-                                {carshow &&
+                                <div ref={cartRef}>
+          {carshow && (
+            <div className="absolute z-50 top-[40px] right-0 ">
+              {data.map((item,id) => (
+                <>
+                  <div className="flex bg-[#F5F5F3] py-[20px] px-[20px]">
+                    <div className="flex items-center justify-between w-[350px]">
+                      <div className="h-[100px] w-[100px] bg-[#979797] mr-[20px]"></div>
+                      <div className="">
+                        <h4 className="text-[14px ] text-[#262626] font-dm font-bold">
+                          Black Smart Watch
+                        </h4>
+                        <p className="text-[14px ] text-[#262626] font-dm font-bold">
+                          $44.00
+                        </p>
+                      </div>
+                      <div onClick={()=>handleDelete(id)} className="ml-[30px]">
+                        <ImCross />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[white] py-[20px] px-[20px]">
+                    <div className="">
+                      <h3 className="">
+                        <span className="text-[16px] text-[rgba(38,38,38,0.67)] font-dm font-normal">
+                          Subtotal:
+                        </span>{" "}
+                        <span className="text-[16px] text-[rgb(38,38,38)] font-dm font-bold">
+                          {" "}
+                          $44.00
+                        </span>
+                      </h3>
+                    </div>
+                    <div className="flex justify-between py-[20px]">
+                      <div className="">
+                        <Link
+                          to="/cart"
+                          className="py-[16px] px-[40px] border text-[16px] text-[#262626] font-dm font-normal hover:bg-[#262626] hover:text-[white] duration-500 "
+                        >
+                          View Cart
+                        </Link>
+                      </div>
+                      <div className="">
+                        <a
+                          href="#"
+                          className="py-[16px] px-[40px] border text-[16px] text-[#262626] font-dm font-normal hover:bg-[#262626] hover:text-[white] duration-500 "
+                        >
+                          Checkout
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))}
+            </div>
+          )}
+          </div>
+                                {/* {carshow &&
                                     <div className="">
                                         {data.map((item, i) => (
                                             <div className="">
@@ -277,8 +338,7 @@ const Manu = () => {
                                             </div>
                                         ))}
                                     </div>
-
-                                }
+                                } */}
                             </div>
                         </div>
                     </div>
