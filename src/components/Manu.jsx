@@ -27,8 +27,8 @@ const Manu = () => {
     let [searchChange, setsearchChange] = useState('')
     let [searchFilter, setsearchFilter] = useState([])
     let navigate = useNavigate()
-    let [selectedItemIndex, setSelectedItemIndex] = useState(-1); 
-    let cartRef = useRef();
+    let [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+    let caateref = useRef()
 
 
 
@@ -54,27 +54,28 @@ const Manu = () => {
             } else {
                 carsetshow(false)
             }
-            if(cartRef.current.contains(e.target)){
+            if(caateref.current.contains(e.target) == true) {
                 carsetshow(true)
-              }
+            }
         })
     }, [cateshow, logshow, carshow, elecshow])
 
+    
     let handelCharce = (e) => {
         setsearchChange(e.target.value)
-        if(e.target.value == ''){
+        if (e.target.value == '') {
             setsearchFilter([])
-        }else{
+        } else {
             let searchFind = info.filter((item) => item.title.toLowerCase().includes(e.target.value))
             setsearchFilter(searchFind);
         }
-     
+
     }
-    let handelcart = (id)=>{
+    let handelcart = (id) => {
         navigate(`/Shop/${id}`)
         setsearchFilter('')
         setsearchChange('')
-        
+
     }
     const handleKeyDown = (e) => {
         if (e.key === 'ArrowDown') {
@@ -171,37 +172,37 @@ const Manu = () => {
                         }
                     </div>
                     <div className="w-[40%] ">
-                       <div className="relative">
-                       <input onChange={handelCharce} onKeyDown={handleKeyDown} value={searchChange}  type="text" placeholder='Search Products' className=' border-2 border-[#222] h-12 w-full pl-2 ' />
-                        <div className=" absolute  lg:right-[10px] right-0 top-[50%] translate-y-[-50%] ">
-                            <IoSearch />
-                        </div>
+                        <div className="relative">
+                            <input onChange={handelCharce} onKeyDown={handleKeyDown} value={searchChange} type="text" placeholder='Search Products' className=' border-2 border-[#222] h-12 w-full pl-2 ' />
+                            <div className=" absolute  lg:right-[10px] right-0 top-[50%] translate-y-[-50%] ">
+                                <IoSearch />
+                            </div>
 
-                       </div>
-                          {searchFilter.length > 0 &&
-                        <div className="h-[500px] w-[450px] overflow-scroll absolute z-20">
-                            {searchFilter.map((item ,index)=>(
-                                 <div
-                                 key={item.id}
-                                 className={`flex bg-[#F5F5F3] py-[20px] px-[20px] ${index === selectedItemIndex ? 'bg-gray-200' : ''}`}
-                                 
-                                 onClick={()=>handelcart(item.id)} >
-                                 <div className="flex justify-between items-center gap-x-3 px-2 py-5">
-                                     <div className=" ">
-                                         <img src={item.thumbnail} alt="" />
-                                     </div>
-                                     <div className=" w-full">
-                                         <h3 className=' font-dm text-black font-samibold text-[14px]'>{item.title}</h3>
-                                         <h3 className='font-dm text-black font-bold text-[14px]'>${item.price}</h3>
-                                     </div>
-                                 </div>
-                             </div>
-                            ))}
-                           
                         </div>
-                         }
+                        {searchFilter.length > 0 &&
+                            <div className="h-[500px] w-[450px] overflow-scroll absolute z-20">
+                                {searchFilter.map((item, index) => (
+                                    <div
+                                        key={item.id}
+                                        className={`flex bg-[#F5F5F3] py-[20px] px-[20px] ${index === selectedItemIndex ? 'bg-gray-200' : ''}`}
+
+                                        onClick={() => handelcart(item.id)} >
+                                        <div className="flex justify-between items-center gap-x-3 px-2 py-5">
+                                            <div className=" ">
+                                                <img src={item.thumbnail} alt="" />
+                                            </div>
+                                            <div className=" w-full">
+                                                <h3 className=' font-dm text-black font-samibold text-[14px]'>{item.title}</h3>
+                                                <h3 className='font-dm text-black font-bold text-[14px]'>${item.price}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+
+                            </div>
+                        }
                     </div>
-                    
+
                     <div className="w-[27%] ">
                         <div className="flex justify-end gap-x-6">
                             <div className=" relative">
@@ -224,121 +225,122 @@ const Manu = () => {
                                         {data.length ? (<div className=" absolute top-[-15px] text-center lg:h-[20px] h-[15px] 
                                         lg:w-[20px] w-[15px] bg-[#F5F5F3] leading-[20px] lg:right-[-9px] ">
                                             <h2 className=' font-dm text-[14px] text-[#262626]'>{data.length}</h2>
-                                        </div>) :( '' )}
+                                        </div>) : ('')}
                                         <FaCartArrowDown />
                                     </div>
                                 </div>
+                                <div ref={caateref}>
+                                {carshow &&
+                                <div className=" absolute z-50 top-[40px] right-0 ">
+                                    {data.map((item)=>(
 
-                                <div ref={cartRef}>
-          {carshow && (
-            <div className="absolute z-50 top-[40px] right-0 ">
-              {data.map((item,id) => (
-                <>
-                  <div className="flex bg-[#F5F5F3] py-[20px] px-[20px]">
-                    <div className="flex items-center justify-between w-[350px]">
-                      <div className="h-[100px] w-[100px] bg-[#979797] mr-[20px]"></div>
-                      <div className="">
-                        <h4 className="text-[14px ] text-[#262626] font-dm font-bold">
-                          Black Smart Watch
-                        </h4>
-                        <p className="text-[14px ] text-[#262626] font-dm font-bold">
-                          $44.00
-                        </p>
-                      </div>
-                      <div onClick={()=>handleDelete(id)} className="ml-[30px]">
-                        <ImCross />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-[white] py-[20px] px-[20px]">
-                    <div className="">
-                      <h3 className="">
-                        <span className="text-[16px] text-[rgba(38,38,38,0.67)] font-dm font-normal">
-                          Subtotal:
-                        </span>{" "}
-                        <span className="text-[16px] text-[rgb(38,38,38)] font-dm font-bold">
-                          {" "}
-                          $44.00
-                        </span>
-                      </h3>
-                    </div>
-                    <div className="flex justify-between py-[20px]">
-                      <div className="">
-                        <Link
-                          to="/cart"
-                          className="py-[16px] px-[40px] border text-[16px] text-[#262626] font-dm font-normal hover:bg-[#262626] hover:text-[white] duration-500 "
-                        >
-                          View Cart
-                        </Link>
-                      </div>
-                      <div className="">
-                        <a
-                          href="#"
-                          className="py-[16px] px-[40px] border text-[16px] text-[#262626] font-dm font-normal hover:bg-[#262626] hover:text-[white] duration-500 "
-                        >
-                          Checkout
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              ))}
-            </div>
-          )}
-          </div>
-                                {/* {carshow &&
-                                    <div className="">
-                                        {data.map((item, i) => (
-                                            <div className="">
-                                                <div className=" w-[350px] border-2 border-[#F0F0F0] absolute z-50 top-[35px] right-0">
-                                                    <div className="">
-
-                                                        <div className="flex justify-between items-center gap-2 bg-[#F5F5F3] ">
-                                                            <div className="flex justify-between items-center gap-x-3 px-2 py-5">
-                                                                <div className=" ">
-                                                                    <img src={item.thumbnail} alt="" />
-                                                                </div>
-                                                                <div className=" w-full">
-                                                                    <h3 className=' font-dm text-black font-samibold text-[14px]'>{item.title}</h3>
-                                                                    <h3 className='font-dm text-black font-bold text-[14px]'>${item.price}</h3>
-                                                                </div>
-                                                            </div>
-                                                            <div className="px-4 py-2">
-                                                                <div onClick={() => dispatch(productdlt(i))} className="font-dm text-black 
-                                                           font-extrabold text-[24px] cursor-pointer">
-                                                                    <ImCross />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div className="px-4 py-5 bg-[#FFFFFF]">
-                                                        <div className="">
-                                                            <h3 ><samp className='font-dm text-[#767676] font-bold text-[16px]'>Subtotal:</samp>
-                                                                <samp className=' font-dm text-black  font-extrabold text-[16px]'>${item.price * item.qun}</samp></h3>
-                                                        </div>
-                                                        <div className="flex justify-between gap-1 pt-2">
-                                                            <div className="border-2 border-[#222] py-3 px-8 bg-black font-dm text-[14px] font-bold
-                                                     text-white hover:bg-white hover:text-black duration-200">
-                                                                <Link to='/cart'>
-                                                                    <h2>View Cart</h2>
-                                                                </Link>
-                                                            </div>
-                                                            <div className="border-2 border-[#222] py-3 px-8 bg-black text-white font-dm text-[14px] 
-                                                    font-bold hover:bg-white hover:text-black duration-200">
-                                                                <Link to='/checkout'>
-                                                                    <h3>Checkout</h3>
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
+                                  
+                                    <div className="flex bg-[#F5F5F3] py-[20px] px-[20px]">
+                                        <div className="flex items-center justify-between w-[350px]">
+                                            <div className="h-[100px] w-[100px]  mr-[20px]">
+                                                <img src={item.thumbnail} alt="" />
                                             </div>
-                                        ))}
+                                            <div className="">
+                                                <h4 className="text-[14px ] text-[#262626] font-dm font-bold">
+                                                    {item.title}
+                                                </h4>
+                                                <p className="text-[14px ] text-[#262626] font-dm font-bold">
+                                                    ${item.price}
+                                                </p>
+                                            </div>
+                                            <div  className="ml-[30px]">
+                                                <ImCross />
+                                            </div>
+                                        </div>
                                     </div>
-                                } */}
+                                     ))}
+                                    <div className="">
+                                        <div className="px-4 py-5 bg-[#FFFFFF]">
+                                            {data.map((item)=>(
+                                                <div className="">
+                                                <h3 ><samp className='font-dm text-[#767676] font-bold text-[16px]'>Subtotal:</samp>
+                                                    <samp className=' font-dm text-black  font-extrabold text-[16px]'>${item.price * item.qun}</samp></h3>
+                                            </div>  
+                                            ))}
+                                            
+                                            
+                                            <div className="flex justify-between gap-1 pt-2">
+                                                <div className="border-2 border-[#222] py-3 px-8 bg-black font-dm text-[14px] font-bold
+                                                     text-white hover:bg-white hover:text-black duration-200">
+                                                    <Link to='/cart'>
+                                                        <h2>View Cart</h2>
+                                                    </Link>
+                                                </div>
+                                                <div className="border-2 border-[#222] py-3 px-8 bg-black text-white font-dm text-[14px] 
+                                                    font-bold hover:bg-white hover:text-black duration-200">
+                                                    <Link to='/checkout'>
+                                                        <h3>Checkout</h3>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                                </div>
+                                {/* <div ref={cartRef}>
+                                    {carshow && (
+                                        <div className="absolute z-50 top-[40px] right-0 ">
+                                            {data.map((item, id) => (
+                                                <>
+                                                    <div className="flex bg-[#F5F5F3] py-[20px] px-[20px]">
+                                                        <div className="flex items-center justify-between w-[350px]">
+                                                            <div className="h-[100px] w-[100px] bg-[#979797] mr-[20px]"></div>
+                                                            <div className="">
+                                                                <h4 className="text-[14px ] text-[#262626] font-dm font-bold">
+                                                                    Black Smart Watch
+                                                                </h4>
+                                                                <p className="text-[14px ] text-[#262626] font-dm font-bold">
+                                                                    $44.00
+                                                                </p>
+                                                            </div>
+                                                            <div onClick={() => handleDelete(id)} className="ml-[30px]">
+                                                                <ImCross />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="bg-[white] py-[20px] px-[20px]">
+                                                        <div className="">
+                                                            <h3 className="">
+                                                                <span className="text-[16px] text-[rgba(38,38,38,0.67)] font-dm font-normal">
+                                                                    Subtotal:
+                                                                </span>{" "}
+                                                                <span className="text-[16px] text-[rgb(38,38,38)] font-dm font-bold">
+                                                                    {" "}
+                                                                    $44.00
+                                                                </span>
+                                                            </h3>
+                                                        </div>
+                                                        <div className="flex justify-between py-[20px]">
+                                                            <div className="">
+                                                                <Link
+                                                                    to="/cart"
+                                                                    className="py-[16px] px-[40px] border text-[16px] text-[#262626] font-dm font-normal hover:bg-[#262626] hover:text-[white] duration-500 "
+                                                                >
+                                                                    View Cart
+                                                                </Link>
+                                                            </div>
+                                                            <div className="">
+                                                                <a
+                                                                    href="#"
+                                                                    className="py-[16px] px-[40px] border text-[16px] text-[#262626] font-dm font-normal hover:bg-[#262626] hover:text-[white] duration-500 "
+                                                                >
+                                                                    Checkout
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div> */}
+                            
                             </div>
                         </div>
                     </div>
