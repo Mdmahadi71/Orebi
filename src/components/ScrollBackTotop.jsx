@@ -6,7 +6,7 @@ const ScrollBackTotop = () => {
     let [ToptoBottom, setToptoBottom] = useState(false)
 
     useEffect(() => {
-        window.addEventListener('click', () => {
+        window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
                 setToptoBottom(true)
             } else {
