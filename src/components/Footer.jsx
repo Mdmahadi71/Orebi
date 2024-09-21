@@ -5,6 +5,7 @@ import ftrlogo from '../assets/footerlogo.png'
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
+import ScrollBackTotop from './ScrollBackTotop';
 
 const Footer = () => {
     return (
@@ -86,6 +87,7 @@ const Footer = () => {
                         <h2 className=' font-dm font-medium text-[14px] text-[#6D6D6D]'>2020 Orebi Minimal eCommerce Figma Template by Adveits</h2>
                     </div>
                 </div>
+                <ScrollBackTotop/>
             </Container>
         </div>
     )
